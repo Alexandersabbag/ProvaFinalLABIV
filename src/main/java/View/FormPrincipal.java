@@ -27,21 +27,71 @@ public class FormPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        Menu = new javax.swing.JMenuBar();
+        MenuCadastro = new javax.swing.JMenu();
+        MenuCadastroUsuario = new javax.swing.JMenuItem();
+        MenuCadastroEndereco = new javax.swing.JMenuItem();
+        MenuCadastroEntrega = new javax.swing.JMenuItem();
+        MenuCadastroVeiculo = new javax.swing.JMenuItem();
+        MenuPesquisa = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 628, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 345, Short.MAX_VALUE)
+        );
+
+        MenuCadastro.setText("Cadastro");
+
+        MenuCadastroUsuario.setText("Usuários");
+        MenuCadastroUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCadastroUsuarioActionPerformed(evt);
+            }
+        });
+        MenuCadastro.add(MenuCadastroUsuario);
+
+        MenuCadastroEndereco.setText("Endereços");
+        MenuCadastro.add(MenuCadastroEndereco);
+
+        MenuCadastroEntrega.setText("Entregas");
+        MenuCadastro.add(MenuCadastroEntrega);
+
+        MenuCadastroVeiculo.setText("Veículos");
+        MenuCadastro.add(MenuCadastroVeiculo);
+
+        Menu.add(MenuCadastro);
+
+        MenuPesquisa.setText("Buscar/Atualizar");
+        Menu.add(MenuPesquisa);
+
+        setJMenuBar(Menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void MenuCadastroUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuCadastroUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +129,13 @@ public class FormPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar Menu;
+    private javax.swing.JMenu MenuCadastro;
+    private javax.swing.JMenuItem MenuCadastroEndereco;
+    private javax.swing.JMenuItem MenuCadastroEntrega;
+    private javax.swing.JMenuItem MenuCadastroUsuario;
+    private javax.swing.JMenuItem MenuCadastroVeiculo;
+    private javax.swing.JMenu MenuPesquisa;
+    private javax.swing.JDesktopPane jDesktopPane1;
     // End of variables declaration//GEN-END:variables
 }
