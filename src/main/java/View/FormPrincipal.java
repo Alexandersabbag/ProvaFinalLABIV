@@ -1,9 +1,12 @@
 package View;
 
+import javax.swing.JFrame;
+
 public class FormPrincipal extends javax.swing.JFrame {
 
     public FormPrincipal() {
         initComponents();
+        configurarForm();
     }
 
     @SuppressWarnings("unchecked")
@@ -18,6 +21,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         MenuCadastroEntrega = new javax.swing.JMenuItem();
         MenuCadastroVeiculo = new javax.swing.JMenuItem();
         MenuPesquisa = new javax.swing.JMenu();
+        menuAtualizarUsuarios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +58,10 @@ public class FormPrincipal extends javax.swing.JFrame {
         Menu.add(MenuCadastro);
 
         MenuPesquisa.setText("Buscar/Atualizar");
+
+        menuAtualizarUsuarios.setText("Usuários");
+        MenuPesquisa.add(menuAtualizarUsuarios);
+
         Menu.add(MenuPesquisa);
 
         setJMenuBar(Menu);
@@ -120,5 +128,13 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuCadastroVeiculo;
     private javax.swing.JMenu MenuPesquisa;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuItem menuAtualizarUsuarios;
     // End of variables declaration//GEN-END:variables
+    
+    private void configurarForm(){
+        this.setTitle("Menu Principal");
+        this.setResizable(false);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
 }
