@@ -41,6 +41,34 @@ public class UsuarioDAO {
     }
     
     //
+    //INSERIR
+    //
+    public int inserir(Usuario obj){
+        try { 
+            String SQL = "insert into tb_usuario"
+                       + "(nome, senha, fg_ativo) values (?,?,?)"; 
+            cmd = con.prepareStatement(SQL); 
+            cmd.setString(1, obj.getNome()); 
+            cmd.setString(2, obj.getSenha()); 
+            cmd.setInt(3, obj.getFg_ativo()); 
+             
+            //envia a instrução SQL para o banco
+            if (cmd.executeUpdate() > 0){
+                //operação realizada com sucesso
+                return 1;   //OK
+            }else{
+                return -1;  //ERRO
+            }
+            
+        } catch (SQLException e) { 
+            System.err.println("ERRO: " + e.getMessage());
+            return -1; //algo errado
+        }finally{
+            Conexao.desconectar(con);
+        }
+    }
+    
+    //
     //ATUALIZAR
     //
     public int atualizar(Usuario obj){
@@ -91,5 +119,31 @@ public class UsuarioDAO {
         }
     }
      
-     
+    //
+    // PESQUISAR POR ID
+    //
+    public Usuario pesquisarPorId(String id){
+        try {
+            String SQL = "select * from tb_usuario where id = ? order by id";
+            cmd = con.prepareStatement(SQL);
+            cmd.setInt(1, Integer.parseInt(id));
+            
+            //executar a consulta
+            ResultSet rs = cmd.executeQuery();
+            if (rs.next()){
+                Usuario usu = new Usuario();
+                usu.setId(rs.getInt("id"));
+                usu.setNome(rs.getString("nome"));
+                usu.setSenha(rs.getString("senha"));
+                usu.setFg_ativo(rs.getInt("fg_ativo"));
+                return usu;
+            }
+            return null;
+        } catch (SQLException e) {
+            System.err.println("ERRO: " + e.getMessage());
+            return null;
+        }finally{
+            Conexao.desconectar(con);
+        }
+    }
 }

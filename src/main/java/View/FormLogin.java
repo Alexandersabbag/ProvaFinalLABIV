@@ -8,6 +8,7 @@ public class FormLogin extends javax.swing.JInternalFrame {
 
     public FormLogin() {
         initComponents();
+        configurarForm();
     }
     
     @SuppressWarnings("unchecked")
@@ -136,4 +137,11 @@ public class FormLogin extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
+    
+    private void configurarForm(){
+        this.setTitle("Login");
+        this.setResizable(false);
+        this.setClosable(false);
+    }
+
 }
