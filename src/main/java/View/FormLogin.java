@@ -19,7 +19,7 @@ public class FormLogin extends javax.swing.JFrame {
 
         lblLogin = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         lblSenha = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btnEntrar = new javax.swing.JButton();
@@ -36,7 +36,7 @@ public class FormLogin extends javax.swing.JFrame {
         lblUsuario.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 24)); // NOI18N
         lblUsuario.setText("Usuário");
 
-        txtUsuario.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 24)); // NOI18N
+        txtNome.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 24)); // NOI18N
 
         lblSenha.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 24)); // NOI18N
         lblSenha.setText("Senha");
@@ -84,7 +84,7 @@ public class FormLogin extends javax.swing.JFrame {
                                 .addComponent(lblSenha))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -114,7 +114,7 @@ public class FormLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(lblSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -141,11 +141,11 @@ public class FormLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         Usuario u = new Usuario();
-        u.setUsuario(txtUsuario.getText());
+        u.setNome(txtNome.getText());
         u.setSenha(new String (txtSenha.getPassword()));
         
         
-        if(u.getUsuario().trim().isEmpty() || u.getSenha().trim().isEmpty()){ //verificar se tem espaço em branco no login e senha
+        if(u.getNome().trim().isEmpty() || u.getSenha().trim().isEmpty()){ //verificar se tem espaço em branco no login e senha
             JOptionPane.showMessageDialog(null,"Usuario e/ou senha não pode ser vazio","Login",JOptionPane.ERROR_MESSAGE);
         }
         else{
@@ -205,8 +205,8 @@ public class FormLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lblMensagem;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;
-    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
 
