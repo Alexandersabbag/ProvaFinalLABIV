@@ -45,8 +45,8 @@ public class Usuario {
         return nome;
     }
 
-    public void setNome(String usuario) {
-        this.nome = usuario;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
     
