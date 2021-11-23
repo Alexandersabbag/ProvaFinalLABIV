@@ -1,6 +1,6 @@
 create table tb_usuario(
 	id SERIAL,
-	usuario varchar(45), 
+	nome varchar(45), 
 	senha varchar(32),
 	fg_ativo int, --0 inativo na empresa , 1 ativo na empresa (Só pode ser acessado pelo admin (id = 1))
 	constraint pk_usuario_id primary key(id)
@@ -22,7 +22,8 @@ create table tb_veiculo(
 	modelo varchar(20),
 	marca varchar(20),
 	motorista varchar (45),
-	
+        fg_ativo integer,
+
 	constraint pk_placa primary key (placa)
 );
 

@@ -3,18 +3,28 @@ package Model;
 public class Usuario {
     private int id;
     private String senha;
-    private String usuario;
+    private String nome;
+    private int fg_ativo;
     
     public Usuario(){
         
     }
 
-    public Usuario(int id, String usuario, String senha) {
+    public Usuario(int id, String usuario, String senha, int fg_ativo) {
         this.id = id;
-        this.usuario = usuario;
+        this.nome = nome;
         this.senha = senha;
+        this.fg_ativo = fg_ativo;
     }
 
+    public int getFg_ativo() {
+        return fg_ativo;
+    }
+
+    public void setFg_ativo(int fg_ativo) {
+        this.fg_ativo = fg_ativo;
+    }
+    
     public int getId() {
         return id;
     }
@@ -31,12 +41,12 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getNome() {
+        return nome;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setNome(String usuario) {
+        this.nome = usuario;
     }
     
     
