@@ -18,7 +18,7 @@ public class UsuarioDAO {
             
             String SQL = "select * from tb_usuario where usuario=? and senha=md5(?)";
             cmd = con.prepareStatement(SQL);
-            cmd.setString(1, u.getUsuario());
+            cmd.setString(1, u.getNome());
             cmd.setString(2, u.getSenha());
             
             ResultSet rs = cmd.executeQuery();

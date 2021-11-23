@@ -22,6 +22,7 @@ create table tb_veiculo(
 	modelo varchar(20),
 	marca varchar(20),
 	motorista varchar (45),
+        fg_ativo int,
 	
 	constraint pk_placa primary key (placa)
 );

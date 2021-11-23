@@ -3,15 +3,15 @@ package Model;
 public class Usuario {
     private int id;
     private String senha;
-    private String usuario;
+    private String nome;
     
     public Usuario(){
         
     }
 
-    public Usuario(int id, String usuario, String senha) {
+    public Usuario(int id, String nome, String senha) {
         this.id = id;
-        this.usuario = usuario;
+        this.nome = nome;
         this.senha = senha;
     }
 
@@ -31,12 +31,12 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getNome() {
+        return nome;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
     
