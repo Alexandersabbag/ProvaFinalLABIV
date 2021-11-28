@@ -1,9 +1,11 @@
 package View;
 
+import Controller.EnderecoDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import Model.Endereco;
+import javax.swing.JOptionPane;
 
 public class FormCadastroEndereco extends javax.swing.JInternalFrame {
 
@@ -18,6 +20,25 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
     {
         this();
         this.identificacao = identificacao;
+        
+        //Exibir os dados da empresa selecionada(com 2 cliques)
+        Endereco end = new EnderecoDAO().pesquisarPorId(identificacao);
+        
+        //Caso existir a empresa, mostrar
+        if(end != null)
+        {
+            //Nome, CPF/CNPJ, Endereco e Cidade
+           txtEndNome.setText(end.getNome());
+           txtEndCpfCnpj.setText(end.getIdentificacao());
+           txtEndEnd.setText(end.getEndereco());
+           txtEndCidade.setText(end.getEndereco());
+           
+           //UF
+           DefaultComboBoxModel m = (DefaultComboBoxModel)cbxEndUF.getModel();
+           
+           //CEP
+           txtEndCEP.setText(end.getCep());
+        }
         
     }
 
@@ -175,6 +196,50 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
         Endereco obj = new Endereco();
+        obj.setNome(txtEndNome.getText());
+        obj.setIdentificacao(txtEndCpfCnpj.getText());
+        obj.setEndereco(txtEndEnd.getText());
+        obj.setCidade(txtEndCidade.getText());  
+        //UF
+        obj.setCep(txtEndCEP.getText());
+        
+        //Executando
+        EnderecoDAO end = new EnderecoDAO();
+        int resultado;
+        
+        //se o campo CPF/CNPJ estiver vazio, cadastrar
+        if (txtEndCpfCnpj.getText().isEmpty())
+        {
+            resultado = end.inserir(obj);
+        }
+        //Caso não esteja, atualizar dados
+        else
+        {
+            obj.setIdentificacao(txtEndCpfCnpj.getText());
+            resultado = end.atualizarDados(obj);
+        }
+        
+        //Caso tenha sucesso na execução
+         if (resultado >= 1)
+         {
+            JOptionPane.showMessageDialog(
+                null,
+                "Operação realizada com sucesso!", 
+                "ENDEREÇOS",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+        //Caso ocorra um erro
+        else{
+            JOptionPane.showMessageDialog(
+                null,
+                "Ocorreu um erro.",
+                "ENDEREÇOS",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+        
+        this.dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
