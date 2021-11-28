@@ -3,9 +3,9 @@ package View;
 import java.awt.Dimension;
 import javax.swing.table.DefaultTableModel;
 
-public class FormAtualizarUsuarios extends javax.swing.JInternalFrame {
+public class FormConsultaUsuario extends javax.swing.JInternalFrame {
 
-    public FormAtualizarUsuarios() {
+    public FormConsultaUsuario() {
         initComponents();
         configurarTabela();
     }
@@ -73,7 +73,7 @@ public class FormAtualizarUsuarios extends javax.swing.JInternalFrame {
             String id = tabAtualizarFuncionario.getValueAt(linha,0).toString();
 
             //abrir o formulário de cadastro
-            FormCadastro f = new FormCadastro(id);
+            FormCadastroUsuario f = new FormCadastroUsuario(id);
             Dimension d = this.getDesktopPane().getSize();
             this.getDesktopPane().add(f);
             f.setLocation( (d.width-f.getSize().width)/2, (d.height-f.getSize().height)/2);

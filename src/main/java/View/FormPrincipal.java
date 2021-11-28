@@ -1,6 +1,9 @@
 package View;
 
+//Bibliotecas
 import javax.swing.JFrame;
+import java.awt.Dimension;
+import javax.swing.JInternalFrame;
 
 public class FormPrincipal extends javax.swing.JFrame {
 
@@ -13,7 +16,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        areaTrabalho = new javax.swing.JDesktopPane();
         Menu = new javax.swing.JMenuBar();
         MenuCadastro = new javax.swing.JMenu();
         MenuCadastroUsuario = new javax.swing.JMenuItem();
@@ -21,18 +24,21 @@ public class FormPrincipal extends javax.swing.JFrame {
         MenuCadastroEntrega = new javax.swing.JMenuItem();
         MenuCadastroVeiculo = new javax.swing.JMenuItem();
         MenuPesquisa = new javax.swing.JMenu();
-        menuAtualizarUsuarios = new javax.swing.JMenuItem();
+        menuConsultaUsuarios = new javax.swing.JMenuItem();
+        menuConsultaEndereco = new javax.swing.JMenuItem();
+        menuConsultaEntrega = new javax.swing.JMenuItem();
+        menuConsultaVeiculo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout areaTrabalhoLayout = new javax.swing.GroupLayout(areaTrabalho);
+        areaTrabalho.setLayout(areaTrabalhoLayout);
+        areaTrabalhoLayout.setHorizontalGroup(
+            areaTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 628, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        areaTrabalhoLayout.setVerticalGroup(
+            areaTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 345, Short.MAX_VALUE)
         );
 
@@ -47,20 +53,64 @@ public class FormPrincipal extends javax.swing.JFrame {
         MenuCadastro.add(MenuCadastroUsuario);
 
         MenuCadastroEndereco.setText("Endereços");
+        MenuCadastroEndereco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCadastroEnderecoActionPerformed(evt);
+            }
+        });
         MenuCadastro.add(MenuCadastroEndereco);
 
         MenuCadastroEntrega.setText("Entregas");
+        MenuCadastroEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCadastroEntregaActionPerformed(evt);
+            }
+        });
         MenuCadastro.add(MenuCadastroEntrega);
 
         MenuCadastroVeiculo.setText("Veículos");
+        MenuCadastroVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCadastroVeiculoActionPerformed(evt);
+            }
+        });
         MenuCadastro.add(MenuCadastroVeiculo);
 
         Menu.add(MenuCadastro);
 
-        MenuPesquisa.setText("Buscar/Atualizar");
+        MenuPesquisa.setText("Consultar/Atualizar");
 
-        menuAtualizarUsuarios.setText("Usuários");
-        MenuPesquisa.add(menuAtualizarUsuarios);
+        menuConsultaUsuarios.setText("Usuários");
+        menuConsultaUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultaUsuariosActionPerformed(evt);
+            }
+        });
+        MenuPesquisa.add(menuConsultaUsuarios);
+
+        menuConsultaEndereco.setText("Endereço");
+        menuConsultaEndereco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultaEnderecoActionPerformed(evt);
+            }
+        });
+        MenuPesquisa.add(menuConsultaEndereco);
+
+        menuConsultaEntrega.setText("Entregas");
+        menuConsultaEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultaEntregaActionPerformed(evt);
+            }
+        });
+        MenuPesquisa.add(menuConsultaEntrega);
+
+        menuConsultaVeiculo.setText("Veículos");
+        menuConsultaVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultaVeiculoActionPerformed(evt);
+            }
+        });
+        MenuPesquisa.add(menuConsultaVeiculo);
 
         Menu.add(MenuPesquisa);
 
@@ -70,11 +120,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(areaTrabalho)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(areaTrabalho)
         );
 
         pack();
@@ -82,17 +132,61 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void MenuCadastroUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroUsuarioActionPerformed
         // TODO add your handling code here:
+        
+        //Cadastro de Usuários
+        abrirForm(new FormCadastroUsuario());
     }//GEN-LAST:event_MenuCadastroUsuarioActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void MenuCadastroEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroEnderecoActionPerformed
+        // TODO add your handling code here:
+        
+        //Cadastro de Enderecos
+        abrirForm(new FormCadastroEndereco());
+    }//GEN-LAST:event_MenuCadastroEnderecoActionPerformed
+
+    private void MenuCadastroEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroEntregaActionPerformed
+        // TODO add your handling code here:
+        
+        //Cadastro de Entregas
+        abrirForm(new FormCadastroEntrega());
+    }//GEN-LAST:event_MenuCadastroEntregaActionPerformed
+
+    private void MenuCadastroVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroVeiculoActionPerformed
+        // TODO add your handling code here:
+        
+        //Cadastro de Veículos
+        abrirForm(new FormCadastroVeiculo());
+    }//GEN-LAST:event_MenuCadastroVeiculoActionPerformed
+
+    private void menuConsultaEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaEntregaActionPerformed
+        // TODO add your handling code here:
+        
+        //Consultar Entregas
+        abrirForm(new FormConsultaEntrega());
+    }//GEN-LAST:event_menuConsultaEntregaActionPerformed
+
+    private void menuConsultaUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaUsuariosActionPerformed
+        // TODO add your handling code here:
+        
+        //Consultar Usuarios
+        abrirForm(new FormConsultaUsuario());
+    }//GEN-LAST:event_menuConsultaUsuariosActionPerformed
+
+    private void menuConsultaEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaEnderecoActionPerformed
+        // TODO add your handling code here:
+        
+        //Consultar Endereços
+        abrirForm(new FormConsultaEndereco());
+    }//GEN-LAST:event_menuConsultaEnderecoActionPerformed
+
+    private void menuConsultaVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaVeiculoActionPerformed
+        // TODO add your handling code here:
+        
+        //Consultar veículos
+        abrirForm(new FormConsultaVeiculo());
+    }//GEN-LAST:event_menuConsultaVeiculoActionPerformed
+
+    public static void main(String args[]) {      
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -109,9 +203,6 @@ public class FormPrincipal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FormPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormPrincipal().setVisible(true);
@@ -127,14 +218,30 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuCadastroUsuario;
     private javax.swing.JMenuItem MenuCadastroVeiculo;
     private javax.swing.JMenu MenuPesquisa;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenuItem menuAtualizarUsuarios;
+    private javax.swing.JDesktopPane areaTrabalho;
+    private javax.swing.JMenuItem menuConsultaEndereco;
+    private javax.swing.JMenuItem menuConsultaEntrega;
+    private javax.swing.JMenuItem menuConsultaUsuarios;
+    private javax.swing.JMenuItem menuConsultaVeiculo;
     // End of variables declaration//GEN-END:variables
     
-    private void configurarForm(){
+    private void configurarForm()
+    {
         this.setTitle("Menu Principal");
         this.setResizable(false);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-    
+   
+    //Função para abrir formulários
+    private void abrirForm(JInternalFrame f)
+    {
+        if (areaTrabalho.getAllFrames().length == 0)
+        {
+            Dimension d = areaTrabalho.getSize();
+            areaTrabalho.add(f);
+            f.setLocation( (d.width-f.getSize().width)/2,
+                           (d.height-f.getSize().height)/2);
+            f.setVisible(true);
+        }
+    }
 }

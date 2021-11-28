@@ -156,33 +156,34 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
     private void configurarUF(){ 
         //carregar as opções de status
         List<String> estado = new ArrayList<>(); //criando as opçÕes de de status
-        estado.add("RO");
         estado.add("AC");
+        estado.add("AL");
         estado.add("AM");
-        estado.add("RR");
-        estado.add("PA");
         estado.add("AP");
-        estado.add("TO");
-        estado.add("MA");
-        estado.add("PI");
+        estado.add("BA");
         estado.add("CE");
-        estado.add("RN");
+        estado.add("DF");
+        estado.add("ES");
+        estado.add("GO");
+        estado.add("MA");
+        estado.add("MG");
+        estado.add("MT");
+        estado.add("MS");
+        estado.add("PA");
         estado.add("PB");
         estado.add("PE");
-        estado.add("AL");
-        estado.add("SE");
-        estado.add("BA");
-        estado.add("MG");
-        estado.add("ES");
-        estado.add("RJ");
-        estado.add("SP");
+        estado.add("PI");
         estado.add("PR");
-        estado.add("SC");
+        estado.add("RJ");
+        estado.add("RN");
+        estado.add("RO"); 
+        estado.add("RR");
         estado.add("RS");
-        estado.add("MS");
-        estado.add("MT");
-        estado.add("GO");
-        estado.add("DF");
+        estado.add("SC");
+        estado.add("SE");
+        estado.add("SP");
+        estado.add("TO");
+        
         //inserindo as opções na cbxStatus
         DefaultComboBoxModel m2 = new DefaultComboBoxModel();
         for(String ef : estado){
