@@ -3,13 +3,22 @@ package View;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import Model.Endereco;
 
 public class FormCadastroEndereco extends javax.swing.JInternalFrame {
 
+    private String identificacao;
     
     public FormCadastroEndereco() {
         initComponents();
         configurarForm();
+    }
+    
+    public FormCadastroEndereco(String identificacao)
+    {
+        this();
+        this.identificacao = identificacao;
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -28,6 +37,8 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         txtEndEnd = new javax.swing.JTextField();
         cbxEndUF = new javax.swing.JComboBox<>();
         txtEndCidade = new javax.swing.JTextField();
+        btnSalvar = new javax.swing.JToggleButton();
+        btnCancelar = new javax.swing.JToggleButton();
 
         lblEndNome.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
         lblEndNome.setText("Nome");
@@ -65,6 +76,24 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
 
         txtEndCidade.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
 
+        btnSalvar.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        btnSalvar.setText("SALVAR");
+        btnSalvar.setToolTipText("");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        btnCancelar.setText("CANCELAR");
+        btnCancelar.setToolTipText("");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,16 +118,23 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
                                                 .addComponent(txtEndCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(cbxEndUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGap(0, 8, Short.MAX_VALUE)))
                                 .addGap(26, 26, 26))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblEndNome)
-                                .addGap(342, 342, 342)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblEndNome)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(92, 92, 92)
+                                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblEndCPFCNPJ)
                             .addComponent(lblEndCep)
                             .addComponent(txtEndCpfCnpj)
-                            .addComponent(txtEndCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))))
+                            .addComponent(txtEndCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -126,14 +162,29 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
                     .addComponent(cbxEndUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEndCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEndCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        
+        Endereco obj = new Endereco();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnCancelar;
+    private javax.swing.JToggleButton btnSalvar;
     private javax.swing.JComboBox<String> cbxEndUF;
     private javax.swing.JLabel lblEndCPFCNPJ;
     private javax.swing.JLabel lblEndCep;
