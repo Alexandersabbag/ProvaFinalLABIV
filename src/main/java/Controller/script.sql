@@ -49,7 +49,7 @@ create table tb_entrega(
 );
 
 --inserção manual do Admin
-insert into tb_usuario (usuario,senha,fg_ativo)
+insert into tb_usuario (nome,senha,fg_ativo)
 	values
 	('admin','123456','1');
 	

@@ -81,6 +81,7 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
         lblID.setFont(new java.awt.Font("Microsoft YaHei UI Light", 0, 14)); // NOI18N
         lblID.setText("ID");
 
+        txtID.setEditable(false);
         txtID.setFont(new java.awt.Font("Microsoft YaHei UI Light", 0, 14)); // NOI18N
 
         lblFg_ativo.setFont(new java.awt.Font("Microsoft YaHei UI Light", 0, 14)); // NOI18N
@@ -156,10 +157,18 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        int opcao;
+        
+        if(cbxFg_ativo.getSelectedIndex()==0)
+            opcao=1;
+        else
+            opcao=0;
+            
+        
         Usuario obj = new Usuario();
         obj.setNome(txtUsuario.getText());
         obj.setSenha(txtSenha.getText());
-        obj.setFg_ativo((int) cbxFg_ativo.getSelectedItem());
+        obj.setFg_ativo(opcao);
         
         
         //Executar a operação de inserção
@@ -170,13 +179,14 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
         if (txtID.getText().isEmpty()){
             //inserir 
             resultado = dao.inserir(obj);
+            txtID.setText(Integer.toString(resultado));
         }else{
             //atualizar
             obj.setId(Integer.parseInt(txtID.getText()));
             resultado = dao.atualizar(obj); 
         }
         
-        if(resultado == 1){
+        if(resultado >= 0){
             JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
         }
         else{
@@ -208,11 +218,6 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
     private void configurarForm(){
         this.setTitle("Cadastro de Funcionários");
         configurarEfetivo();
-        desabilitarID();
-    }
-    
-    private void desabilitarID(){
-        txtID.setEnabled(false);  
     }
     
     private void configurarEfetivo(){ 

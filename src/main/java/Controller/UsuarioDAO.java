@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class UsuarioDAO {
                 return false; 
             }
             
-        }catch (Exception e){
+        }catch (SQLException e){
             System.err.println("ERRO: " + e.getMessage());
             return false;
         }
@@ -47,7 +48,7 @@ public class UsuarioDAO {
         try { 
             String SQL = "insert into tb_usuario"
                        + "(nome, senha, fg_ativo) values (?,?,?)"; 
-            cmd = con.prepareStatement(SQL); 
+            cmd = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS); 
             cmd.setString(1, obj.getNome()); 
             cmd.setString(2, obj.getSenha()); 
             cmd.setInt(3, obj.getFg_ativo()); 
@@ -55,14 +56,15 @@ public class UsuarioDAO {
             //envia a instrução SQL para o banco
             if (cmd.executeUpdate() > 0){
                 //operação realizada com sucesso
-                return 1;   //OK
+                ResultSet rs = cmd.getGeneratedKeys();
+                return rs.next()? rs.getInt(1) : 1;   //OK
             }else{
                 return -1;  //ERRO
             }
             
         } catch (SQLException e) { 
             System.err.println("ERRO: " + e.getMessage());
-            return -1; //algo errado
+            return -2; //algo errado
         }finally{
             Conexao.desconectar(con);
         }
