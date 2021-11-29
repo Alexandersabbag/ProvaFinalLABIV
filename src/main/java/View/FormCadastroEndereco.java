@@ -32,7 +32,6 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
            txtEndCpfCnpj.setText(end.getIdentificacao());
            txtEndEnd.setText(end.getEndereco());
            txtEndCidade.setText(end.getEndereco());
-           
            //UF
            DefaultComboBoxModel m = (DefaultComboBoxModel)cbxEndUF.getModel();
            
@@ -199,8 +198,8 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         obj.setNome(txtEndNome.getText());
         obj.setIdentificacao(txtEndCpfCnpj.getText());
         obj.setEndereco(txtEndEnd.getText());
-        obj.setCidade(txtEndCidade.getText());  
-        //UF
+        obj.setCidade(txtEndCidade.getText()); 
+        obj.setUf((String) cbxEndUF.getSelectedItem());
         obj.setCep(txtEndCEP.getText());
         
         //Executando

@@ -47,7 +47,7 @@ public class UsuarioDAO {
     public int inserir(Usuario obj){
         try { 
             String SQL = "insert into tb_usuario"
-                       + "(nome, senha, fg_ativo) values (?,?,?)"; 
+                       + "(usuario, senha, fg_ativo) values (?,md5(?),?)"; 
             cmd = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS); 
             cmd.setString(1, obj.getNome()); 
             cmd.setString(2, obj.getSenha()); 
