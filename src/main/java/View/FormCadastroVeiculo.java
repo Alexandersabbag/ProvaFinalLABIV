@@ -237,6 +237,6 @@ public class FormCadastroVeiculo extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     
     private void configurarForm(){
-        this.setTitle("Cadastro de Funcionários");
+        this.setTitle("Cadastro de Veículos");
     }
 }
