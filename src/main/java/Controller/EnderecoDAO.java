@@ -6,7 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EnderecoDAO {    
+public class EnderecoDAO 
+{    
     private Connection con;
     private PreparedStatement cmd;
 
@@ -39,7 +40,7 @@ public class EnderecoDAO {
             
         } catch (SQLException e) {
             System.err.println("ERRO: " + e.getMessage());
-            return -1;
+            return -2;
         }finally{
             Conexao.desconectar(con);
         }
@@ -87,7 +88,7 @@ public class EnderecoDAO {
         }
     }
     
-    //Função de pesquisar por ID - Utilizado para atualizar os dados
+    //PESQUISA POR CPF/CNPJ
     public Endereco pesquisarPorId(String identificacao)
     {
         try

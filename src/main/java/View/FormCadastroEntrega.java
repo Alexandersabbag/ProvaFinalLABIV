@@ -1,14 +1,42 @@
 package View;
 
+import Controller.EntregaDAO;
+import Model.Entrega;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 public class FormCadastroEntrega extends javax.swing.JInternalFrame {
 
     public FormCadastroEntrega() {
         initComponents();
         configurarForm();
+    }
+    
+    private String nf;
+    
+    public FormCadastroEntrega(String nf)
+    {
+        this();
+        this.nf = nf;
+        
+        //Exibir os dados da entrega selecionada(com 2 cliques)
+        Entrega ent = new EntregaDAO().pesquisarPorNf(nf);
+        
+        //Caso existir a empresa, mostrar
+        if(ent != null)
+        {
+            //Dados da entrega
+           txtNF.setText(ent.getNf());
+           txtPlaca.setText(ent.getPlaca());
+           txtRemetente.setText(ent.getId_remetente());
+           txtDestinatario.setText(ent.getId_destinatario());
+           DefaultComboBoxModel m = (DefaultComboBoxModel)cbxStatus.getModel();
+           txtDtaSaida.setText(ent.getDta_saida());
+           txtDtaEntrega.setText(ent.getDta_entrega());
+        }
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -85,9 +113,19 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
 
         btnSalvar.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,10 +176,6 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
                                     .addComponent(lblDtaEntrega))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(214, 214, 214)
-                .addComponent(lblControleEntregas)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,6 +217,55 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // TODO add your handling code here:
+        
+        //Novos dados da entrega
+        Entrega obj = new Entrega();
+  
+        obj.setNf(txtNF.getText());
+        obj.setPlaca(txtPlaca.getText());
+        obj.setId_remetente(txtRemetente.getText());
+        obj.setId_destinatario(txtDestinatario.getText()); 
+        obj.setStatus_entrega((String) cbxStatus.getSelectedItem());
+        obj.setDta_saida(txtDtaSaida.getText());
+        obj.setDta_entrega(txtDtaEntrega.getText());
+        
+        //Executando
+        EntregaDAO end = new EntregaDAO();
+        int resultado;
+        
+        //Cadastro
+        resultado = end.inserir(obj);
+        
+        //Caso tenha sucesso na execução
+         if (resultado >= 1)
+         {
+            JOptionPane.showMessageDialog(
+                null,
+                "Operação realizada com sucesso!", 
+                "ENTREGAS",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+        //Caso ocorra um erro
+        else{
+            JOptionPane.showMessageDialog(
+                null,
+                "Ocorreu um erro.",
+                "ENTREGAS",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+        
+        this.dispose();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
