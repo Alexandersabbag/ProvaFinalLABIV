@@ -56,23 +56,25 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         txtEndCidade = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JToggleButton();
         btnCancelar = new javax.swing.JToggleButton();
+        lblTitulo = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        lblEndNome.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        lblEndNome.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblEndNome.setText("Nome");
 
-        lblEndCPFCNPJ.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        lblEndCPFCNPJ.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblEndCPFCNPJ.setText("CPF/CNPJ");
 
-        lblEndEnd.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        lblEndEnd.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblEndEnd.setText("Endereco");
 
-        lblEndCidade.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        lblEndCidade.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblEndCidade.setText("Cidade");
 
-        lblEndUf.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        lblEndUf.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblEndUf.setText("UF");
 
-        lblEndCep.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        lblEndCep.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblEndCep.setText("CEP");
 
         try {
@@ -82,16 +84,16 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         }
         txtEndCEP.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
 
-        txtEndNome.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        txtEndNome.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
 
-        txtEndCpfCnpj.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        txtEndCpfCnpj.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
 
-        txtEndEnd.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        txtEndEnd.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
 
-        cbxEndUF.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        cbxEndUF.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         cbxEndUF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        txtEndCidade.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        txtEndCidade.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
 
         btnSalvar.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         btnSalvar.setText("SALVAR");
@@ -111,53 +113,63 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
             }
         });
 
+        lblTitulo.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        lblTitulo.setText("Cadastro de Endereço");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtEndEnd)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator1)
+                            .addComponent(txtEndEnd)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEndNome)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtEndNome)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblEndCidade)
-                                                .addGap(219, 219, 219)
-                                                .addComponent(lblEndUf))
-                                            .addComponent(lblEndEnd)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtEndCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(cbxEndUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 8, Short.MAX_VALUE)))
-                                .addGap(26, 26, 26))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblEndNome)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lblEndEnd)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(txtEndCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(lblEndCidade))
+                                                        .addGap(18, 18, 18)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(lblEndUf)
+                                                            .addComponent(cbxEndUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGap(0, 17, Short.MAX_VALUE)))
+                                        .addGap(26, 26, 26))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(92, 92, 92)
-                                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblEndCPFCNPJ)
-                            .addComponent(lblEndCep)
-                            .addComponent(txtEndCpfCnpj)
-                            .addComponent(txtEndCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                                        .addComponent(lblEndNome)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblEndCPFCNPJ)
+                                    .addComponent(lblEndCep)
+                                    .addComponent(txtEndCpfCnpj)
+                                    .addComponent(txtEndCEP, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))))
+                        .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(227, 227, 227)
+                .addComponent(lblTitulo)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(lblTitulo)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEndNome)
                     .addComponent(lblEndCPFCNPJ))
@@ -179,11 +191,13 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
                     .addComponent(cbxEndUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEndCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEndCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -238,12 +252,14 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
     private javax.swing.JToggleButton btnCancelar;
     private javax.swing.JToggleButton btnSalvar;
     private javax.swing.JComboBox<String> cbxEndUF;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblEndCPFCNPJ;
     private javax.swing.JLabel lblEndCep;
     private javax.swing.JLabel lblEndCidade;
     private javax.swing.JLabel lblEndEnd;
     private javax.swing.JLabel lblEndNome;
     private javax.swing.JLabel lblEndUf;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JFormattedTextField txtEndCEP;
     private javax.swing.JTextField txtEndCidade;
     private javax.swing.JTextField txtEndCpfCnpj;
@@ -252,7 +268,7 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     
     private void configurarForm(){
-        this.setTitle("Cadastro de Entregas");
+        this.setTitle("Cadastro de Endereço");
         configurarUF();
     }
     

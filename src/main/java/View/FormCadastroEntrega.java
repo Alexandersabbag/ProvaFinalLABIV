@@ -63,7 +63,7 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
 
         lblControleEntregas.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 24)); // NOI18N
-        lblControleEntregas.setText("Controle de Entregas");
+        lblControleEntregas.setText("Cadastro de Entregas");
 
         lblNF.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblNF.setText("Nota Fiscal");
@@ -132,13 +132,9 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(214, 214, 214)
-                .addComponent(lblControleEntregas)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNF)
+                    .addComponent(txtNF, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPlaca)
@@ -294,7 +290,7 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void configurarForm(){
-        this.setTitle("Cadastro de Funcionários");
+        this.setTitle("Cadastro de Entregas");
         configurarStatus();
     }
 
