@@ -55,15 +55,15 @@ public class VeiculoDAO
         try
         {
             //Enviar comando para o banco de dados
-            String SQL = "update tb_veiculo set cor=?, modelo=?,"
+            String SQL = "update tb_veiculo set placa=?, cor=?, modelo=?,"
                     + " marca=?, motorista=?, fg_ativo=? where placa=?";
             
-            cmd.setString(1, obj.getCor());
-            cmd.setString(2, obj.getModelo());
-            cmd.setString(3, obj.getMarca());
-            cmd.setString(4, obj.getMotorista());
-            cmd.setInt(5, obj.getFg_ativo());
-            cmd.setString(6, obj.getPlaca());
+            cmd.setString(1, obj.getPlaca());
+            cmd.setString(2, obj.getCor());
+            cmd.setString(3, obj.getModelo());
+            cmd.setString(4, obj.getMarca());
+            cmd.setString(5, obj.getMotorista());
+            cmd.setInt(6, obj.getFg_ativo());
             
             //Caso o update seja concluido com sucesso
             if(cmd.executeUpdate() > 0)
