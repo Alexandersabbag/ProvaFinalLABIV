@@ -7,7 +7,7 @@ public class FormConsultaUsuario extends javax.swing.JInternalFrame {
 
     public FormConsultaUsuario() {
         initComponents();
-        configurarTabela();
+        configurarForm();
     }
 
     @SuppressWarnings("unchecked")
@@ -91,6 +91,12 @@ public class FormConsultaUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabAtualizarFuncionario;
     // End of variables declaration//GEN-END:variables
     
+    
+    private void configurarForm(){
+        this.setTitle("Consulta de Usuários");
+        this.setResizable(false);
+        configurarTabela();
+    }
     private void configurarTabela(){
         DefaultTableModel m = new DefaultTableModel(){
             @Override
