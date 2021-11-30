@@ -78,4 +78,5 @@ public class Entrega {
     public void setDta_entrega(String dta_entrega) {
         this.dta_entrega = dta_entrega;
     }   
+   
 }

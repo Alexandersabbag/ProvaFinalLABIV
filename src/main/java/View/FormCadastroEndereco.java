@@ -21,21 +21,18 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         this();
         this.identificacao = identificacao;
         
-        //Exibir os dados da empresa selecionada(com 2 cliques)
+        //Exibir os dados do Endereço selecionada(com 2 cliques)
         Endereco end = new EnderecoDAO().pesquisarPorId(identificacao);
         
-        //Caso existir a empresa, mostrar
+        //Caso existir a Endereço, mostrar
         if(end != null)
         {
-            //Nome, CPF/CNPJ, Endereco e Cidade
+            //Dados do Endereço
            txtEndNome.setText(end.getNome());
            txtEndCpfCnpj.setText(end.getIdentificacao());
            txtEndEnd.setText(end.getEndereco());
            txtEndCidade.setText(end.getEndereco());
-           //UF
            DefaultComboBoxModel m = (DefaultComboBoxModel)cbxEndUF.getModel();
-           
-           //CEP
            txtEndCEP.setText(end.getCep());
         }
         
@@ -206,17 +203,8 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         EnderecoDAO end = new EnderecoDAO();
         int resultado;
         
-        //se o campo CPF/CNPJ estiver vazio, cadastrar
-        if (txtEndCpfCnpj.getText().isEmpty())
-        {
+            //Cadastro do endereço
             resultado = end.inserir(obj);
-        }
-        //Caso não esteja, atualizar dados
-        else
-        {
-            obj.setIdentificacao(txtEndCpfCnpj.getText());
-            resultado = end.atualizarDados(obj);
-        }
         
         //Caso tenha sucesso na execução
          if (resultado >= 1)

@@ -12,18 +12,21 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
     
     private String id;
     
-    public FormCadastroUsuario() {
+    public FormCadastroUsuario() 
+    {
         initComponents();
         configurarForm();
     }
     
-    public FormCadastroUsuario(String id){
+    public FormCadastroUsuario(String id)
+    {
         this();
         this.id = id;
         
         //Exibir os dados de Usuario selecionada
         Usuario fun = new UsuarioDAO().pesquisarPorId(id);
-        if (fun != null){
+        if (fun != null)
+        {
             txtID.setText(Integer.toString(fun.getId()));
             txtUsuario.setText(fun.getNome());
             txtSenha.setText(fun.getSenha());
@@ -159,12 +162,12 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         int opcao;
         
+        //Deixando a opção sim como 1 e não como 0
         if(cbxFg_ativo.getSelectedIndex()==0)
             opcao=1;
         else
             opcao=0;
             
-        
         Usuario obj = new Usuario();
         obj.setNome(txtUsuario.getText());
         obj.setSenha(txtSenha.getText());
@@ -176,20 +179,25 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
         int resultado;
         
         //se o campo Id estiver vazio
-        if (txtID.getText().isEmpty()){
+        if (txtID.getText().isEmpty())
+        {
             //inserir 
             resultado = dao.inserir(obj);
             txtID.setText(Integer.toString(resultado));
-        }else{
+        }
+        else
+        {
             //atualizar
             obj.setId(Integer.parseInt(txtID.getText()));
             resultado = dao.atualizar(obj); 
         }
         
-        if(resultado >= 0){
+        if(resultado >= 0)
+        {
             JOptionPane.showMessageDialog(null, "Operação realizada com sucesso!");
         }
-        else{
+        else
+        {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro","Cadastro de Funcionario", JOptionPane.ERROR_MESSAGE);    
         }
         this.dispose();
@@ -215,19 +223,24 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
     
-    private void configurarForm(){
+    private void configurarForm()
+    {
         this.setTitle("Cadastro de Funcionários");
         configurarEfetivo();
     }
     
-    private void configurarEfetivo(){ 
+    private void configurarEfetivo()
+    { 
         //carregar as opções de status
         List<String> efetivo = new ArrayList<>(); //criando as opçÕes de de status
         efetivo.add("Sim");
         efetivo.add("Não");
         //inserindo as opções na cbxStatus
         DefaultComboBoxModel m2 = new DefaultComboBoxModel();
-        for(String ef : efetivo){
+        
+        //Adicionando os elementos
+        for(String ef : efetivo)
+        {
             m2.addElement(ef);
         }
         cbxFg_ativo.setModel(m2);
