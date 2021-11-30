@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,16 +47,14 @@ public class UsuarioDAO {
         try { 
             String SQL = "insert into tb_usuario"
                        + "(usuario, senha, fg_ativo) values (?,md5(?),?)"; 
-            cmd = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS); 
+            cmd = con.prepareStatement(SQL); 
             cmd.setString(1, obj.getNome()); 
             cmd.setString(2, obj.getSenha()); 
             cmd.setInt(3, obj.getFg_ativo()); 
              
             //envia a instrução SQL para o banco
             if (cmd.executeUpdate() > 0){
-                //operação realizada com sucesso
-                ResultSet rs = cmd.getGeneratedKeys();
-                return rs.next()? rs.getInt(1) : 1;   //OK
+                return 1;   //OK
             }else{
                 return -1;  //ERRO
             }

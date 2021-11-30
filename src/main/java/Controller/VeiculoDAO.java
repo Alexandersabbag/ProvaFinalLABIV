@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class VeiculoDAO 
 {
@@ -23,20 +22,19 @@ public class VeiculoDAO
     public int inserir(Veiculo obj){
         try { 
             String SQL = "insert into tb_veiculo"
-                        + "(placa, cor, modelo, marca, motorista) values (?,?,?,?,?)"; 
-            cmd = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+                        + "(placa, cor, modelo, marca, motorista, fg_ativo) values (?,?,?,?,?,?)"; 
+            cmd = con.prepareStatement(SQL);
             cmd.setString(1, obj.getPlaca());
             cmd.setString(2, obj.getCor());
             cmd.setString(3, obj.getModelo());
             cmd.setString(4, obj.getMarca());
             cmd.setString(5, obj.getMotorista());
+            cmd.setInt(6, obj.getFg_ativo());
             
              
             //envia a instrução SQL para o banco
             if (cmd.executeUpdate() > 0){
-                //operação realizada com sucesso
-                ResultSet rs = cmd.getGeneratedKeys();
-                return rs.next()? rs.getInt(1) : 1;   //OK
+                return 1;   //OK
             }else{
                 return -1;  //ERRO
             }
@@ -57,14 +55,15 @@ public class VeiculoDAO
         try
         {
             //Enviar comando para o banco de dados
-            String SQL = "update tb_veiculo set placa=?, cor=?, modelo=?,"
-                    + " marca=?, motorista=? where placa=?";
+            String SQL = "update tb_veiculo set cor=?, modelo=?,"
+                    + " marca=?, motorista=?, fg_ativo=? where placa=?";
             
-            cmd.setString(1, obj.getPlaca());
-            cmd.setString(2, obj.getCor());
-            cmd.setString(3, obj.getModelo());
-            cmd.setString(4, obj.getMarca());
-            cmd.setString(5, obj.getMotorista());
+            cmd.setString(1, obj.getCor());
+            cmd.setString(2, obj.getModelo());
+            cmd.setString(3, obj.getMarca());
+            cmd.setString(4, obj.getMotorista());
+            cmd.setInt(5, obj.getFg_ativo());
+            cmd.setString(6, obj.getPlaca());
             
             //Caso o update seja concluido com sucesso
             if(cmd.executeUpdate() > 0)
@@ -116,6 +115,7 @@ public class VeiculoDAO
                 veic.setModelo(rs.getString("modelo"));
                 veic.setMarca(rs.getString("marca"));
                 veic.setMotorista(rs.getString("motorista"));
+                veic.setFg_ativo(rs.getInt("fg_ativo"));
                 
                 return veic;
             }

@@ -187,6 +187,7 @@ public class FormCadastroVeiculo extends javax.swing.JInternalFrame {
         obj.setModelo(txtModelo.getText()); 
         obj.setMarca(txtMarca.getText());
         obj.setMotorista(txtMotorista.getText());
+        obj.setFg_ativo(1);
         
         //Executando
         VeiculoDAO veic = new VeiculoDAO();
