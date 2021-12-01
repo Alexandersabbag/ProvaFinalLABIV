@@ -273,6 +273,8 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
     private void configurarForm(){
         this.setTitle("Cadastro de Endereço");
         configurarUF();
+        setResizable(false);
+        setClosable(true);
     }
     
     private void configurarUF(){ 
