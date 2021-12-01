@@ -96,6 +96,7 @@ public class FormConsultaUsuario extends javax.swing.JInternalFrame {
         this.setTitle("Consulta de Usuários");
         this.setResizable(false);
         configurarTabela();
+        setClosable(true);
     }
     private void configurarTabela(){
         DefaultTableModel m = new DefaultTableModel(){

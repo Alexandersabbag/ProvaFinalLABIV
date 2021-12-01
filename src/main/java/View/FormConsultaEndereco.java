@@ -104,6 +104,7 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
         this.setTitle("Consulta de Endereços");
         this.setResizable(false);
         configurarTabela();
+        setClosable(true);
     }
     
     private void configurarTabela(){

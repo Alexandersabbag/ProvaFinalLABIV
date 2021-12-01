@@ -297,6 +297,8 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
     private void configurarForm(){
         this.setTitle("Cadastro de Entregas");
         configurarStatus();
+        setResizable(false);
+        setClosable(true);
     }
 
     private void configurarStatus(){

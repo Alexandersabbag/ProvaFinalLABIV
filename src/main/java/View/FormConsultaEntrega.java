@@ -102,6 +102,7 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
         this.setTitle("Consulta de Entregas");
         this.setResizable(false);
         configurarTabela();
+        setClosable(true);
     }
     
     private void configurarTabela(){

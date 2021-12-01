@@ -227,6 +227,8 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
     {
         this.setTitle("Cadastro de Funcionários");
         configurarEfetivo();
+        setResizable(false);
+        setClosable(true);
     }
     
     private void configurarEfetivo()

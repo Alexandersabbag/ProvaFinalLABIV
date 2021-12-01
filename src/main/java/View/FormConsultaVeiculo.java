@@ -100,6 +100,7 @@ public class FormConsultaVeiculo extends javax.swing.JInternalFrame {
         this.setTitle("Consulta de Veículos");
         this.setResizable(false);
         configurarTabela();
+        setClosable(true);
     }
     
     private void configurarTabela(){

@@ -239,5 +239,7 @@ public class FormCadastroVeiculo extends javax.swing.JInternalFrame {
     
     private void configurarForm(){
         this.setTitle("Cadastro de Veículos");
+        setResizable(false);
+        setClosable(true);
     }
 }
