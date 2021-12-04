@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntregaDAO 
 {    
@@ -131,6 +133,52 @@ public class EntregaDAO
                 return ent;
             }
             return null;
+        }
+        
+        //Tratar os erros
+        catch (SQLException e)
+        {
+               System.err.println("ERRO: " + e.getMessage());
+               return null;
+        }
+        
+        //Desconectar
+        finally
+        {
+           Conexao.desconectar(con);
+        }
+    }
+    
+    //
+    //LISTAR TODOS CADASTROS
+    //
+    public List<Entrega> listar()
+    {
+        try
+        {
+            //Enviar comando para o banco de dados
+            String SQL = "select * from tb_entrega order by nf";
+            cmd = con.prepareStatement(SQL);
+            
+            //Execução da consulta
+            List<Entrega> lista = new ArrayList<>();
+            ResultSet rs = cmd.executeQuery();
+            
+            //Laço de repetição para listar
+            while(rs.next())
+            {
+                Entrega ent = new Entrega();
+                ent.setNf(rs.getString("nf"));
+                ent.setPlaca(rs.getString("placa"));
+                ent.setId_remetente(rs.getString("id_remetente"));
+                ent.setId_destinatario(rs.getString("id_destinatario"));
+                ent.setStatus_entrega(rs.getString("status_entrega"));
+                ent.setDta_saida(rs.getString("dta_saida"));
+                ent.setDta_entrega(rs.getString("dta_entrega"));
+                lista.add(ent);
+                
+            }
+            return lista;
         }
         
         //Tratar os erros

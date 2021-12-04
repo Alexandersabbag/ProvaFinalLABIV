@@ -1,5 +1,10 @@
 package View;
 
+//Bibliotecas
+import Controller.EntregaDAO;
+import Model.Entrega;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FormConsultaEntrega extends javax.swing.JInternalFrame {
@@ -101,8 +106,9 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
     private void configurarForm(){
         this.setTitle("Consulta de Entregas");
         this.setResizable(false);
-        configurarTabela();
         setClosable(true);
+        configurarTabela();
+        preencherTabela( new EntregaDAO().listar());
     }
     
     private void configurarTabela(){
@@ -112,6 +118,7 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
                 return false;
             }
         };
+        m.addColumn("Nota Fiscal");
         m.addColumn("Remetente");
         m.addColumn("Destinatário");
         m.addColumn("Placa"); 
@@ -119,5 +126,54 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
         m.addColumn("Data de Entrega"); 
         m.addColumn("Status"); 
         tabListaEntregas.setModel(m); 
+    }
+    
+    //Função para preencher a tabela
+    private void preencherTabela(List<Entrega> lista)
+    {
+        //Caso a lista não esteja vazia
+        if(lista != null)
+        {
+            //Caso o tamanho da lista seja maior que zero
+            if(lista.size() > 0)
+            {
+                configurarTabela();
+                DefaultTableModel emp = (DefaultTableModel)tabListaEntregas.getModel();
+                
+                //Laço de repetição para chegar até o último cadastro
+                for(Entrega obj: lista)
+                {
+                    emp.addRow(new Object[]
+                    {
+                        obj.getNf(),
+                        obj.getId_remetente(),
+                        obj.getId_destinatario(),
+                        obj.getPlaca(),
+                        obj.getDta_saida(),
+                        obj.getDta_entrega(),
+                        obj.getStatus_entrega(),
+                    }
+                               );
+                }
+                
+                tabListaEntregas.setModel(emp);
+            }
+            
+            //Caso o tamanho da lista seja zero
+            else
+            {
+                JOptionPane.showMessageDialog(null, 
+                        "Não há endereço(s) na tabela", "ENDEREÇOS", 
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        
+        //Caso a lista esteja vazia, indicar erro de contato com o banco
+        else
+        {
+            JOptionPane.showMessageDialog(null, 
+                        "Houve um erro ao buscar os dados", "ENDEREÇOS", 
+                        JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
