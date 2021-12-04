@@ -1,6 +1,11 @@
 package View;
 
+//Bilbiotecas
 import javax.swing.table.DefaultTableModel;
+import Controller.EnderecoDAO;
+import Model.Endereco;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 public class FormConsultaEndereco extends javax.swing.JInternalFrame {
 
@@ -50,21 +55,17 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(txtCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(121, 121, 121)
+                                .addComponent(txtCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)
                                 .addComponent(lblListaEnderecos))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lblCPFCNPJ)))
+                            .addComponent(lblCPFCNPJ))
                         .addGap(0, 380, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(340, 340, 340)
@@ -103,8 +104,9 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
     private void configurarForm(){
         this.setTitle("Consulta de Endereços");
         this.setResizable(false);
-        configurarTabela();
         setClosable(true);
+        configurarTabela();
+        preencherTabela( new EnderecoDAO().listar());
     }
     
     private void configurarTabela(){
@@ -121,5 +123,53 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
         m.addColumn("UF"); 
         m.addColumn("CEP"); 
         tabEndereco.setModel(m); 
+    }
+    
+    //Função para preencher a tabela
+    private void preencherTabela(List<Endereco> lista)
+    {
+        //Caso a lista não esteja vazia
+        if(lista != null)
+        {
+            //Caso o tamanho da lista seja maior que zero
+            if(lista.size() > 0)
+            {
+                configurarTabela();
+                DefaultTableModel emp = (DefaultTableModel)tabEndereco.getModel();
+                
+                //Laço de repetição para chegar até o último cadastro
+                for(Endereco obj: lista)
+                {
+                    emp.addRow(new Object[]
+                    {
+                        obj.getIdentificacao(),
+                        obj.getNome(),
+                        obj.getEndereco(),
+                        obj.getCidade(),
+                        obj.getUf(),
+                        obj.getCep(),
+                    }
+                               );
+                }
+                
+                tabEndereco.setModel(emp);
+            }
+            
+            //Caso o tamanho da lista seja zero
+            else
+            {
+                JOptionPane.showMessageDialog(null, 
+                        "Não há endereço(s) na tabela", "ENDEREÇOS", 
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        
+        //Caso a lista esteja vazia, indicar erro de contato com o banco
+        else
+        {
+            JOptionPane.showMessageDialog(null, 
+                        "Houve um erro ao buscar os dados", "ENDEREÇOS", 
+                        JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
