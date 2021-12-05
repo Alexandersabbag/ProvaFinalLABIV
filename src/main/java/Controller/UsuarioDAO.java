@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,21 +23,49 @@ public class UsuarioDAO {
     public boolean login (Usuario u){
         try{
             
-            String SQL = "select * from tb_usuario where usuario=? and senha=md5(?)";
+            String SQL = "select * from tb_usuario where nome=? and senha=md5(?)";
+            cmd = con.prepareStatement(SQL);
+            cmd.setString(1, u.getNome());
+            cmd.setString(2, u.getSenha());
+            
+            ResultSet rst = cmd.executeQuery();
+            if (rst.next()){
+                if(rst.getInt("fg_ativo")==0){
+                    return false;
+                }
+                else{
+                    ResultSet rs = cmd.executeQuery();
+                    if(rs.next()){ 
+                        return true;  
+                    }else {  
+                        return false; 
+                    }
+                }
+            }
+            return false;
+        }catch (SQLException e){
+            System.err.println("ERRO: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public int retornarID (Usuario u){
+        try{
+            
+            String SQL = "select * from tb_usuario where nome=? and senha=md5(?)";
             cmd = con.prepareStatement(SQL);
             cmd.setString(1, u.getNome());
             cmd.setString(2, u.getSenha());
             
             ResultSet rs = cmd.executeQuery();
-            if(rs.next()){ 
-                return true;  
-            }else {  
-                return false; 
-            }
+            if(rs.next())
+                return rs.getInt("id");
+            else
+                return -1;
             
         }catch (SQLException e){
             System.err.println("ERRO: " + e.getMessage());
-            return false;
+            return -1;
         }
     }
     
@@ -46,18 +75,20 @@ public class UsuarioDAO {
     public int inserir(Usuario obj){
         try { 
             String SQL = "insert into tb_usuario"
-                       + "(usuario, senha, fg_ativo) values (?,md5(?),?)"; 
-            cmd = con.prepareStatement(SQL); 
+                       + "(nome, senha, fg_ativo) values (?,md5(?),?)"; 
+            cmd = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS); 
             cmd.setString(1, obj.getNome()); 
             cmd.setString(2, obj.getSenha()); 
             cmd.setInt(3, obj.getFg_ativo()); 
              
             //envia a instrução SQL para o banco
             if (cmd.executeUpdate() > 0){
-                return 1;   //OK
-            }else{
-                return -1;  //ERRO
+                //Sucesso, retornar o ID
+                ResultSet rs = cmd.getGeneratedKeys();
+                return rs.next()? rs.getInt(1) : 1;
             }
+            else
+                return -1;//Erro
             
         } catch (SQLException e) { 
             System.err.println("ERRO: " + e.getMessage());
@@ -96,8 +127,8 @@ public class UsuarioDAO {
     //
     // LISTAR
     //  
-     public List<Usuario> listar()
-     {
+    public List<Usuario> listar()
+    {
         try 
         {
             //Enviar comando para o banco de dados
@@ -113,7 +144,7 @@ public class UsuarioDAO {
             {
                 Usuario user = new Usuario();
                 user.setId(rs.getInt("id"));
-                user.setNome(rs.getString("usuario"));
+                user.setNome(rs.getString("nome"));
                 user.setFg_ativo(rs.getInt("fg_ativo")); //indica se o usuário está efetivado na empresa
                 lista.add(user);
             }

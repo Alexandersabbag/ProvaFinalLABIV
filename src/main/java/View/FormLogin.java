@@ -105,15 +105,16 @@ public class FormLogin extends javax.swing.JInternalFrame {
         u.setNome(txtNome.getText());
         u.setSenha(new String (txtSenha.getPassword()));
         
+        if(new UsuarioDAO().retornarID(u) == 1)
+            FormPrincipal.admin = true;
         
         if(u.getNome().trim().isEmpty() || u.getSenha().trim().isEmpty()){ //verificar se tem espaço em branco no login e senha
             JOptionPane.showMessageDialog(null,"Usuario e/ou senha não pode ser vazio","Login",JOptionPane.ERROR_MESSAGE);
         }
-        else{
-            if(new UsuarioDAO().login(u)){
+        else{           
+            if(new UsuarioDAO().login(u) == true){
                 //usuario logado com sucesso!
-                FormPrincipal f = new FormPrincipal(); //abre o form Principal
-                f.setVisible(true);
+                FormPrincipal.login = true;
                 this.dispose(); //fecha a tela de Login
             }
             else{

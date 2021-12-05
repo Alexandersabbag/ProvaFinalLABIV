@@ -4,12 +4,17 @@ package View;
 import javax.swing.JFrame;
 import java.awt.Dimension;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 public class FormPrincipal extends javax.swing.JFrame {
 
+    public static boolean login = false;
+    public static boolean admin = false;
+    
     public FormPrincipal() {
         initComponents();
         configurarForm();
+        abrirForm(new FormLogin());
     }
 
     @SuppressWarnings("unchecked")
@@ -131,59 +136,59 @@ public class FormPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuCadastroUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroUsuarioActionPerformed
-        // TODO add your handling code here:
-        
         //Cadastro de Usuários
-        abrirForm(new FormCadastroUsuario());
+        if(verificarLogin() == true)
+            abrirForm(new FormCadastroUsuario());
     }//GEN-LAST:event_MenuCadastroUsuarioActionPerformed
 
     private void MenuCadastroEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroEnderecoActionPerformed
-        // TODO add your handling code here:
-        
         //Cadastro de Enderecos
-        abrirForm(new FormCadastroEndereco());
+        if(verificarLogin() == true)
+            abrirForm(new FormCadastroEndereco());
     }//GEN-LAST:event_MenuCadastroEnderecoActionPerformed
 
     private void MenuCadastroEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroEntregaActionPerformed
-        // TODO add your handling code here:
-        
         //Cadastro de Entregas
-        abrirForm(new FormCadastroEntrega());
+        if(verificarLogin() == true)
+            abrirForm(new FormCadastroEntrega());
     }//GEN-LAST:event_MenuCadastroEntregaActionPerformed
 
     private void MenuCadastroVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroVeiculoActionPerformed
-        // TODO add your handling code here:
-        
         //Cadastro de Veículos
-        abrirForm(new FormCadastroVeiculo());
+        if(verificarLogin() == true)
+            abrirForm(new FormCadastroVeiculo());
     }//GEN-LAST:event_MenuCadastroVeiculoActionPerformed
 
     private void menuConsultaEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaEntregaActionPerformed
-        // TODO add your handling code here:
-        
         //Consultar Entregas
-        abrirForm(new FormConsultaEntrega());
+        if(verificarLogin() == true)
+            abrirForm(new FormConsultaEntrega());
     }//GEN-LAST:event_menuConsultaEntregaActionPerformed
 
     private void menuConsultaUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaUsuariosActionPerformed
-        // TODO add your handling code here:
-        
         //Consultar Usuarios
-        abrirForm(new FormConsultaUsuario());
+        if(verificarLogin() == true){
+            if(admin == false){
+                JOptionPane.showMessageDialog(null, 
+                    "ERRO: Acesso negado", 
+                    "Erro", 
+                    JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            abrirForm(new FormConsultaUsuario());
+        }
     }//GEN-LAST:event_menuConsultaUsuariosActionPerformed
 
     private void menuConsultaEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaEnderecoActionPerformed
-        // TODO add your handling code here:
-        
         //Consultar Endereços
-        abrirForm(new FormConsultaEndereco());
+        if(verificarLogin() == true)
+            abrirForm(new FormConsultaEndereco());
     }//GEN-LAST:event_menuConsultaEnderecoActionPerformed
 
     private void menuConsultaVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaVeiculoActionPerformed
-        // TODO add your handling code here:
-        
         //Consultar veículos
-        abrirForm(new FormConsultaVeiculo());
+        if(verificarLogin() == true)
+            abrirForm(new FormConsultaVeiculo());
     }//GEN-LAST:event_menuConsultaVeiculoActionPerformed
 
     public static void main(String args[]) {      
@@ -243,5 +248,17 @@ public class FormPrincipal extends javax.swing.JFrame {
                            (d.height-f.getSize().height)/2);
             f.setVisible(true);
         }
+    }
+    
+    private boolean verificarLogin(){
+        if(login == false){
+            JOptionPane.showMessageDialog(null, 
+                "ERRO: faça login primeiro",
+                "Erro", 
+                JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else
+            return true;
     }
 }
