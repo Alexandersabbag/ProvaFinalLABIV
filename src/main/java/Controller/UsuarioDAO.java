@@ -96,24 +96,38 @@ public class UsuarioDAO {
     //
     // LISTAR
     //  
-     public List<Usuario> listar(){
-        try {
+     public List<Usuario> listar()
+     {
+        try 
+        {
+            //Enviar comando para o banco de dados
             String SQL = "select * from tb_usuario order by id";
             cmd = con.prepareStatement(SQL);
+            
+            //Execução da consulta
             List<Usuario> lista = new ArrayList<>();
             ResultSet rs = cmd.executeQuery();
-            while (rs.next()){
+            
+            //Laço de repetição para listar
+            while (rs.next())
+            {
                 Usuario user = new Usuario();
                 user.setId(rs.getInt("id"));
-                user.setNome(rs.getString("nome"));
+                user.setNome(rs.getString("usuario"));
                 user.setFg_ativo(rs.getInt("fg_ativo")); //indica se o usuário está efetivado na empresa
                 lista.add(user);
             }
             return lista;
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) 
+        {
             System.err.println("ERRO: " + e.getMessage());
             return null;
-        }finally{
+        }
+        
+        //Desconectar
+        finally
+        {
             Conexao.desconectar(con);
         }
     }

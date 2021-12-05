@@ -1,5 +1,9 @@
 package View;
 
+import Controller.VeiculoDAO;
+import Model.Veiculo;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FormConsultaVeiculo extends javax.swing.JInternalFrame {
@@ -96,14 +100,17 @@ public class FormConsultaVeiculo extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
     
-    private void configurarForm(){
+    private void configurarForm()
+    {
         this.setTitle("Consulta de Veículos");
         this.setResizable(false);
-        configurarTabela();
         setClosable(true);
+        configurarTabela();
+        preencherTabela( new VeiculoDAO().listar());
     }
     
-    private void configurarTabela(){
+    private void configurarTabela()
+    {
         DefaultTableModel m = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
@@ -114,7 +121,56 @@ public class FormConsultaVeiculo extends javax.swing.JInternalFrame {
         m.addColumn("Placa");
         m.addColumn("Cor"); 
         m.addColumn("Modelo"); 
+        m.addColumn("Marca");
         m.addColumn("Status");  //Fg_ativo
         tabListaVeiculos.setModel(m);
+    }
+    
+    //Função para preencher a tabela
+    private void preencherTabela(List<Veiculo> lista)
+    {
+        //Caso a lista não esteja vazia
+        if(lista != null)
+        {
+            //Caso o tamanho da lista seja maior que zero
+            if(lista.size() > 0)
+            {
+                configurarTabela();
+                DefaultTableModel veic = (DefaultTableModel)tabListaVeiculos.getModel();
+                
+                //Laço de repetição para chegar até o último cadastro
+                for(Veiculo obj: lista)
+                {
+                    veic.addRow(new Object[]
+                    {
+                        obj.getMotorista(),
+                        obj.getPlaca(),
+                        obj.getCor(),
+                        obj.getModelo(),
+                        obj.getMarca(),
+                        obj.getFg_ativo(),
+                    }
+                               );
+                }
+                
+                tabListaVeiculos.setModel(veic);
+            }
+            
+            //Caso o tamanho da lista seja zero
+            else
+            {
+                JOptionPane.showMessageDialog(null, 
+                        "Não há endereço(s) na tabela", "VEÍCULOS", 
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        
+        //Caso a lista esteja vazia, indicar erro de contato com o banco
+        else
+        {
+            JOptionPane.showMessageDialog(null, 
+                        "Houve um erro ao buscar os dados", "VEÍCULOS", 
+                        JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

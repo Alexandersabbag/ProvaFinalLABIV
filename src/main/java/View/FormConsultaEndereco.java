@@ -101,7 +101,8 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCpfCnpj;
     // End of variables declaration//GEN-END:variables
     
-    private void configurarForm(){
+    private void configurarForm()
+    {
         this.setTitle("Consulta de Endereços");
         this.setResizable(false);
         setClosable(true);

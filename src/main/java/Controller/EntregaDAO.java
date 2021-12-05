@@ -150,7 +150,7 @@ public class EntregaDAO
     }
     
     //
-    //LISTAR TODOS CADASTROS
+    //LISTAR TODAS ENTREGAS
     //
     public List<Entrega> listar()
     {

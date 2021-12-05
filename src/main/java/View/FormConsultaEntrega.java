@@ -163,7 +163,7 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
             else
             {
                 JOptionPane.showMessageDialog(null, 
-                        "Não há endereço(s) na tabela", "ENDEREÇOS", 
+                        "Não há endereço(s) na tabela", "ENTREGAS", 
                         JOptionPane.INFORMATION_MESSAGE);
             }
         }
@@ -172,7 +172,7 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
         else
         {
             JOptionPane.showMessageDialog(null, 
-                        "Houve um erro ao buscar os dados", "ENDEREÇOS", 
+                        "Houve um erro ao buscar os dados", "ENTREGAS", 
                         JOptionPane.ERROR_MESSAGE);
         }
     }

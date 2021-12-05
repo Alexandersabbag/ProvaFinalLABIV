@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VeiculoDAO 
 {
@@ -120,6 +122,51 @@ public class VeiculoDAO
                 return veic;
             }
             return null;
+        }
+        
+        //Tratar os erros
+        catch (SQLException e)
+        {
+               System.err.println("ERRO: " + e.getMessage());
+               return null;
+        }
+        
+        //Desconectar
+        finally
+        {
+           Conexao.desconectar(con);
+        }
+    }
+    
+    //
+    //LISTAR TODAS ENTREGAS
+    //
+    public List<Veiculo> listar()
+    {
+        try
+        {
+            //Enviar comando para o banco de dados
+            String SQL = "select * from tb_veiculo order by placa";
+            cmd = con.prepareStatement(SQL);
+            
+            //Execução da consulta
+            List<Veiculo> lista = new ArrayList<>();
+            ResultSet rs = cmd.executeQuery();
+            
+            //Laço de repetição para listar
+            while(rs.next())
+            {
+                Veiculo veic = new Veiculo();
+                veic.setPlaca(rs.getString("placa"));
+                veic.setCor(rs.getString("cor"));
+                veic.setModelo(rs.getString("modelo"));
+                veic.setMarca(rs.getString("marca"));
+                veic.setMotorista(rs.getString("motorista"));
+                veic.setFg_ativo(rs.getInt("fg_ativo"));
+                lista.add(veic);
+                
+            }
+            return lista;
         }
         
         //Tratar os erros
