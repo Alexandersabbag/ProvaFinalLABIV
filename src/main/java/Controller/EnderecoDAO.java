@@ -56,6 +56,8 @@ public class EnderecoDAO
             //Enviar comando para o banco de dados
             String SQL = "update tb_endereco set nome=?, identificacao=?, endereco=?,"
                     + " cidade=?, uf=?, cep=? where identificacao=?";
+            
+            cmd = con.prepareStatement(SQL);
             cmd.setString(1, obj.getNome());
             cmd.setString(2, obj.getIdentificacao());
             cmd.setString(3, obj.getEndereco());
