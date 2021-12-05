@@ -4,6 +4,7 @@ package View;
 import javax.swing.table.DefaultTableModel;
 import Controller.EnderecoDAO;
 import Model.Endereco;
+import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -32,6 +33,11 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
         lblCPFCNPJ.setText("CPF/CNPJ");
 
         txtCpfCnpj.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        txtCpfCnpj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCpfCnpjKeyReleased(evt);
+            }
+        });
 
         tabEndereco.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         tabEndereco.setModel(new javax.swing.table.DefaultTableModel(
@@ -45,6 +51,11 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabEnderecoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabEndereco);
 
         lblListaEnderecos.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
@@ -90,6 +101,49 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tabEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabEnderecoMouseClicked
+        // TODO add your handling code here:
+        
+        //Caso o usuário clicou 2x
+        if(evt.getClickCount() == 2)
+        {
+            //Buscar o id da empresa para mostrar no formulário
+            int linha = tabEndereco.getSelectedRow();
+            String id = tabEndereco.getValueAt(linha, 0).toString();
+            
+            //Abrir o formulário de cadastro no centro da tela
+            FormCadastroEndereco end = new FormCadastroEndereco(id, 1);
+            
+            //Dimensionando no centro
+            Dimension d = this.getDesktopPane().getSize();
+            this.getDesktopPane().add(end);
+            end.setLocation((d.width-end.getSize().width)/2, (d.height-end.getSize().height)/2);
+            end.setVisible(true);
+            
+            //Fechando o formulário
+            this.dispose();
+        }
+    }//GEN-LAST:event_tabEnderecoMouseClicked
+
+    private void txtCpfCnpjKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfCnpjKeyReleased
+        // TODO add your handling code here:
+        
+        //Nome utilizado na pesquisa, procurar na base
+        String nome = txtCpfCnpj.getText();
+        
+        //Caso o nome esteja vazio, mostrar toda a tabela
+        if(nome.isEmpty())
+        {
+            preencherTabela( new EnderecoDAO().listar());
+        }
+        
+        //Caso tenha algo escrito, pesquisar
+        else
+        {
+            preencherTabela( new EnderecoDAO().pesquisarPorCpfCnpj(nome));
+        }
+    }//GEN-LAST:event_txtCpfCnpjKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

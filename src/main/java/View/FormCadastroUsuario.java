@@ -30,6 +30,7 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
             txtID.setText(Integer.toString(fun.getId()));
             txtUsuario.setText(fun.getNome());
             txtSenha.setText(fun.getSenha());
+            DefaultComboBoxModel m = (DefaultComboBoxModel)cbxFg_ativo.getModel();
         }
     }
     

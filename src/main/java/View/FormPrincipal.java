@@ -256,9 +256,14 @@ public class FormPrincipal extends javax.swing.JFrame {
                 "ERRO: faça login primeiro",
                 "Erro", 
                 JOptionPane.ERROR_MESSAGE);
+            
             return false;
+            
         }
         else
-            return true;
+        {
+            return true;        
+        }
+            
     }
 }

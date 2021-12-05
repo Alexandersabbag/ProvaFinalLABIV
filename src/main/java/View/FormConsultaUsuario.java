@@ -116,7 +116,7 @@ public class FormConsultaUsuario extends javax.swing.JInternalFrame {
         m.addColumn("Id");
         m.addColumn("Nome");
         m.addColumn("Fg_ativo");
-        //Adicionar uma coluna que expõe a senha do usuário para o admin ? 
+        
         tabAtualizarFuncionario.setModel(m);
     }
     
@@ -151,7 +151,7 @@ public class FormConsultaUsuario extends javax.swing.JInternalFrame {
             else
             {
                 JOptionPane.showMessageDialog(null, 
-                        "Não há endereço(s) na tabela", "USUÁRIOS", 
+                        "Não há usuários na tabela", "USUÁRIOS", 
                         JOptionPane.INFORMATION_MESSAGE);
             }
         }

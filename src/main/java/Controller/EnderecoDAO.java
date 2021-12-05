@@ -177,5 +177,53 @@ public class EnderecoDAO
         }
     }
     
+    //
+    //PESQUISAR PELO CPF DIGITADO
+    //
+    //Função de pesquisar por nome
+    public List<Endereco> pesquisarPorCpfCnpj(String identificacao)
+    {
+        try
+        {
+            //Enviar comando para o banco de dados
+            String SQL = "select * from tb_endereco where identificacao ilike ?";
+            cmd = con.prepareStatement(SQL);
+            
+            //Pesquisar as palavras em qualquer lugar do texto(sendo inicio, meio ou fim)
+            cmd.setString(1, "%"+identificacao+"%");
+            
+            //Execução da consulta
+            List<Endereco> lista = new ArrayList<>();
+            ResultSet rs = cmd.executeQuery();
+            
+            //Laço de repetição para listar
+            while(rs.next())
+            {
+                Endereco end = new Endereco();
+                end.setNome(rs.getString("nome"));
+                end.setIdentificacao(rs.getString("identificacao"));
+                end.setEndereco(rs.getString("endereco"));
+                end.setCidade(rs.getString("cidade"));
+                end.setUf(rs.getString("uf"));
+                end.setCep(rs.getString("cep"));
+                lista.add(end);
+            }
+            return lista;
+        }
+        
+        //Tratar os erros
+        catch (SQLException e)
+        {
+               System.err.println("ERRO: " + e.getMessage());
+               return null;
+        }
+        
+        //Desconectar
+        finally
+        {
+           Conexao.desconectar(con);
+        }
+    }
+    
         
 }

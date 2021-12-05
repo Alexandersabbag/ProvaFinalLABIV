@@ -103,12 +103,13 @@ public class UsuarioDAO {
     //
     public int atualizar(Usuario obj){
         try {
-            String SQL = "update tb_usuario set nome=?, set senha=? where id=?";
+            String SQL = "update tb_usuario set nome=?, senha=md5(?), fg_ativo=? where id=?";
                        
             cmd = con.prepareStatement(SQL); 
             cmd.setString(1, obj.getNome());
-            cmd.setString(2, obj.getSenha());
-            cmd.setInt(3,obj.getId());
+            cmd.setString(2,obj.getSenha());
+            cmd.setInt(3, obj.getFg_ativo());
+            cmd.setInt(4, obj.getId());
             
             if (cmd.executeUpdate() > 0){
                 return 1;   //OK
