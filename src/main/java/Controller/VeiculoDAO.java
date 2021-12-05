@@ -102,7 +102,7 @@ public class VeiculoDAO
         try
         {
             //Enviar comando para o banco de dados
-            String SQL = "select * from tb_veiculo where placa = ? order by id asc";
+            String SQL = "select * from tb_veiculo where placa = ? order by placa asc";
             cmd = con.prepareStatement(SQL);
             cmd.setString(1, placa);
             
@@ -148,6 +148,54 @@ public class VeiculoDAO
             //Enviar comando para o banco de dados
             String SQL = "select * from tb_veiculo order by placa";
             cmd = con.prepareStatement(SQL);
+            
+            //Execução da consulta
+            List<Veiculo> lista = new ArrayList<>();
+            ResultSet rs = cmd.executeQuery();
+            
+            //Laço de repetição para listar
+            while(rs.next())
+            {
+                Veiculo veic = new Veiculo();
+                veic.setPlaca(rs.getString("placa"));
+                veic.setCor(rs.getString("cor"));
+                veic.setModelo(rs.getString("modelo"));
+                veic.setMarca(rs.getString("marca"));
+                veic.setMotorista(rs.getString("motorista"));
+                veic.setFg_ativo(rs.getInt("fg_ativo"));
+                lista.add(veic);
+                
+            }
+            return lista;
+        }
+        
+        //Tratar os erros
+        catch (SQLException e)
+        {
+               System.err.println("ERRO: " + e.getMessage());
+               return null;
+        }
+        
+        //Desconectar
+        finally
+        {
+           Conexao.desconectar(con);
+        }
+    }
+    
+    //
+    //PESQUISAR APÓS DIGITAR NA CONSULTA
+    //
+    public List<Veiculo> pesquisarPorPlacaConsulta(String placa)
+    {
+        try
+        {
+            //Enviar comando para o banco de dados
+            String SQL = "select * from tb_veiculo where placa ilike ? order by placa asc";
+            cmd = con.prepareStatement(SQL);
+            
+            //Pesquisar as palavras em qualquer lugar do texto(sendo inicio, meio ou fim)
+            cmd.setString(1, "%"+placa+"%");
             
             //Execução da consulta
             List<Veiculo> lista = new ArrayList<>();

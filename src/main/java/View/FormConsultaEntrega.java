@@ -3,6 +3,7 @@ package View;
 //Bibliotecas
 import Controller.EntregaDAO;
 import Model.Entrega;
+import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +33,11 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
         lblNF.setText("Nota Fiscal");
 
         txtNf.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        txtNf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNfKeyReleased(evt);
+            }
+        });
 
         lblListaEntrega.setFont(new java.awt.Font("Microsoft YaHei UI Light", 0, 14)); // NOI18N
         lblListaEntrega.setText("Lista de Entregas");
@@ -48,6 +54,16 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabListaEntregas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabListaEntregasMouseClicked(evt);
+            }
+        });
+        tabListaEntregas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tabListaEntregasKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabListaEntregas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -92,6 +108,53 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNfKeyReleased
+        // TODO add your handling code here:
+        
+        //NF utilizado na pesquisa, procurar na base
+        String nome = txtNf.getText();
+        
+        //Caso o nome esteja vazio, mostrar toda a tabela
+        if(nome.isEmpty())
+        {
+            preencherTabela( new EntregaDAO().listar());
+        }
+        
+        //Caso tenha algo escrito, pesquisar
+        else
+        {
+            preencherTabela( new EntregaDAO().pesquisarPorNota(nome));
+        }
+    }//GEN-LAST:event_txtNfKeyReleased
+
+    private void tabListaEntregasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabListaEntregasKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabListaEntregasKeyReleased
+
+    private void tabListaEntregasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabListaEntregasMouseClicked
+        // TODO add your handling code here:
+        
+        //Caso o usuário clicou 2x
+        if(evt.getClickCount() == 2)
+        {
+            //Buscar o id da empresa para mostrar no formulário
+            int linha = tabListaEntregas.getSelectedRow();
+            String nf = tabListaEntregas.getValueAt(linha, 0).toString();
+            
+            //Abrir o formulário de cadastro no centro da tela
+            FormCadastroEntrega emp = new FormCadastroEntrega(nf, 1);
+            
+            //Dimensionando no centro
+            Dimension d = this.getDesktopPane().getSize();
+            this.getDesktopPane().add(emp);
+            emp.setLocation((d.width-emp.getSize().width)/2, (d.height-emp.getSize().height)/2);
+            emp.setVisible(true);
+            
+            //Fechando o formulário
+            this.dispose();
+        }
+    }//GEN-LAST:event_tabListaEntregasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -163,7 +226,7 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
             else
             {
                 JOptionPane.showMessageDialog(null, 
-                        "Não há endereço(s) na tabela", "ENTREGAS", 
+                        "Não há entrega(s) na tabela", "ENTREGAS", 
                         JOptionPane.INFORMATION_MESSAGE);
             }
         }

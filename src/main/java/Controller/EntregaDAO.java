@@ -112,7 +112,7 @@ public class EntregaDAO
         try
         {
             //Enviar comando para o banco de dados
-            String SQL = "select * from tb_entrega where nf = ? order by id asc";
+            String SQL = "select * from tb_entrega where nf = ? order by nf asc";
             cmd = con.prepareStatement(SQL);
             cmd.setInt(1, Integer.parseInt(nf));
             
@@ -159,6 +159,53 @@ public class EntregaDAO
             //Enviar comando para o banco de dados
             String SQL = "select * from tb_entrega order by nf";
             cmd = con.prepareStatement(SQL);
+            
+            //Execução da consulta
+            List<Entrega> lista = new ArrayList<>();
+            ResultSet rs = cmd.executeQuery();
+            
+            //Laço de repetição para listar
+            while(rs.next())
+            {
+                Entrega ent = new Entrega();
+                ent.setNf(rs.getString("nf"));
+                ent.setPlaca(rs.getString("placa"));
+                ent.setId_remetente(rs.getString("id_remetente"));
+                ent.setId_destinatario(rs.getString("id_destinatario"));
+                ent.setStatus_entrega(rs.getString("status_entrega"));
+                ent.setDta_saida(rs.getString("dta_saida"));
+                ent.setDta_entrega(rs.getString("dta_entrega"));
+                lista.add(ent);
+                
+            }
+            return lista;
+        }
+        
+        //Tratar os erros
+        catch (SQLException e)
+        {
+               System.err.println("ERRO: " + e.getMessage());
+               return null;
+        }
+        
+        //Desconectar
+        finally
+        {
+           Conexao.desconectar(con);
+        }
+    }
+    
+    //Função de pesquisar por nf após digitar na consulta
+    public List<Entrega> pesquisarPorNota(String nf)
+    {
+        try
+        {
+            //Enviar comando para o banco de dados
+            String SQL = "select * from tb_entrega where nf ilike ? order by nf asc";
+            cmd = con.prepareStatement(SQL);
+            
+            //Pesquisar as palavras em qualquer lugar do texto(sendo inicio, meio ou fim)
+            cmd.setString(1, "%"+nf+"%");
             
             //Execução da consulta
             List<Entrega> lista = new ArrayList<>();

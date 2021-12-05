@@ -90,6 +90,9 @@
           <Font name="Microsoft YaHei Light" size="14" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNfKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblListaEntrega">
       <Properties>
@@ -120,6 +123,10 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabListaEntregasMouseClicked"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tabListaEntregasKeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

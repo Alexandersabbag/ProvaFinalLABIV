@@ -7,7 +7,7 @@ public class Conexao {
      //PARÂMETROS
     private static final String HOST = "localhost:5432";
     private static final String USUARIO = "postgres";
-    private static final String SENHA = "1234";
+    private static final String SENHA = "2468";
     private static final String DATABASE = "PROJETO_TRANSPORTADORA";
     
     //STRING DE CONEXÃO

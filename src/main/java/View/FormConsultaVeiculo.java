@@ -2,6 +2,7 @@ package View;
 
 import Controller.VeiculoDAO;
 import Model.Veiculo;
+import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +32,11 @@ public class FormConsultaVeiculo extends javax.swing.JInternalFrame {
         lblPlaca.setText("Placa");
 
         txtPlaca.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        txtPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPlacaKeyReleased(evt);
+            }
+        });
 
         lblListaVeiculos.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         lblListaVeiculos.setText("Lista de Veículos");
@@ -47,6 +53,11 @@ public class FormConsultaVeiculo extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabListaVeiculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabListaVeiculosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabListaVeiculos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -89,6 +100,49 @@ public class FormConsultaVeiculo extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtPlacaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyReleased
+        // TODO add your handling code here:
+        
+        //Placa utilizada na pesquisa, procurar na base
+        String placa = txtPlaca.getText();
+        
+        //Caso o nome esteja vazio, mostrar toda a tabela
+        if(placa.isEmpty())
+        {
+            preencherTabela( new VeiculoDAO().listar());
+        }
+        
+        //Caso tenha algo escrito, pesquisar
+        else
+        {
+            preencherTabela( new VeiculoDAO().pesquisarPorPlacaConsulta(placa));
+        }
+    }//GEN-LAST:event_txtPlacaKeyReleased
+
+    private void tabListaVeiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabListaVeiculosMouseClicked
+        // TODO add your handling code here:
+        
+        //Caso o usuário clicou 2x
+        if(evt.getClickCount() == 2)
+        {
+            //Buscar o id da empresa para mostrar no formulário
+            int linha = tabListaVeiculos.getSelectedRow();
+            String id = tabListaVeiculos.getValueAt(linha, 0).toString();
+            
+            //Abrir o formulário de cadastro no centro da tela
+            FormCadastroVeiculo veic = new FormCadastroVeiculo(id, 1);
+            
+            //Dimensionando no centro
+            Dimension d = this.getDesktopPane().getSize();
+            this.getDesktopPane().add(veic);
+            veic.setLocation((d.width-veic.getSize().width)/2, (d.height-veic.getSize().height)/2);
+            veic.setVisible(true);
+            
+            //Fechando o formulário
+            this.dispose();
+        }
+    }//GEN-LAST:event_tabListaVeiculosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -160,7 +214,7 @@ public class FormConsultaVeiculo extends javax.swing.JInternalFrame {
             else
             {
                 JOptionPane.showMessageDialog(null, 
-                        "Não há endereço(s) na tabela", "VEÍCULOS", 
+                        "Não há veículo(s) na tabela", "VEÍCULOS", 
                         JOptionPane.INFORMATION_MESSAGE);
             }
         }
