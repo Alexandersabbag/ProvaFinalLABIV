@@ -1,6 +1,7 @@
 package Model;
 
-public class Entrega {
+public class Entrega 
+{
     
     private String nf;
     private String placa;
@@ -13,7 +14,8 @@ public class Entrega {
     public Entrega() {
     }
 
-    public Entrega(String nf, String placa, String id_remetente, String id_destinatario, String status_entrega, String dta_saida, String dta_entrega) {
+    public Entrega(String nf, String placa, String id_remetente, String id_destinatario, String status_entrega, String dta_saida, String dta_entrega) 
+    {
         this.nf = nf;
         this.placa = placa;
         this.id_remetente = id_remetente;
@@ -23,6 +25,7 @@ public class Entrega {
         this.dta_entrega = dta_entrega;
     }
 
+    //GETTERS E SETTERS
     public String getNf() {
         return nf;
     }

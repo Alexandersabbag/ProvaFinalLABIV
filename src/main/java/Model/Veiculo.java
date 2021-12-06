@@ -1,6 +1,7 @@
 package Model;
 
-public class Veiculo {
+public class Veiculo 
+{
     
     private String placa;
     private String cor;
@@ -12,7 +13,8 @@ public class Veiculo {
     public Veiculo() {
     }
 
-    public Veiculo(String placa, String cor, String modelo, String marca, String motorista, int fg_ativo) {
+    public Veiculo(String placa, String cor, String modelo, String marca, String motorista, int fg_ativo) 
+    {
         this.placa = placa;
         this.cor = cor;
         this.modelo = modelo;
@@ -21,6 +23,7 @@ public class Veiculo {
         this.fg_ativo = fg_ativo;
     }
 
+    //GETTERS E SETTERS
     public String getPlaca() {
         return placa;
     }

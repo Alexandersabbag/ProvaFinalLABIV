@@ -5,9 +5,10 @@ import Controller.VeiculoDAO;
 import Model.Veiculo;
 import javax.swing.JOptionPane;
 
-public class FormCadastroVeiculo extends javax.swing.JInternalFrame {
-
-    public FormCadastroVeiculo() {
+public class FormCadastroVeiculo extends javax.swing.JInternalFrame 
+{
+    public FormCadastroVeiculo() 
+    {
         initComponents();
         configurarForm();
     }
@@ -32,7 +33,6 @@ public class FormCadastroVeiculo extends javax.swing.JInternalFrame {
            txtMarca.setText(veic.getMarca());
            txtMotorista.setText(veic.getMotorista());
         }
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -170,12 +170,13 @@ public class FormCadastroVeiculo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //BOTÃO CANCELAR
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    //BOTÃO SALVAR
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         
@@ -187,28 +188,14 @@ public class FormCadastroVeiculo extends javax.swing.JInternalFrame {
         obj.setModelo(txtModelo.getText()); 
         obj.setMarca(txtMarca.getText());
         obj.setMotorista(txtMotorista.getText());
-        //obj.setFg_ativo(1);
         
         //Executando
         VeiculoDAO veic = new VeiculoDAO();
         int resultado;
         
-        //Caso tipo=0, cadastrar
-        if(obj.getPlaca().isEmpty())
-        {
-            //Cadastro
-            resultado = veic.inserir(obj);         
-            txtPlaca.setText(Integer.toString(resultado));
-        }
-        
-        //Caso não, atualizar
-        else
-        {
-            obj.setPlaca(txtPlaca.getText());
-            resultado = veic.atualizarDados(obj);
-        }
-        
-        
+        //Cadastro
+        resultado = veic.inserir(obj);         
+            
         //Caso tenha sucesso na execução
          if (resultado >= 0)
          {
@@ -250,7 +237,8 @@ public class FormCadastroVeiculo extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
     
-    private void configurarForm(){
+    private void configurarForm()
+    {
         this.setTitle("Cadastro de Veículos");
         setResizable(false);
         setClosable(true);

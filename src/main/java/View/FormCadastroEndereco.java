@@ -1,5 +1,6 @@
 package View;
 
+//Bibliotecas
 import Controller.EnderecoDAO;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +8,12 @@ import javax.swing.DefaultComboBoxModel;
 import Model.Endereco;
 import javax.swing.JOptionPane;
 
-public class FormCadastroEndereco extends javax.swing.JInternalFrame {
-
+public class FormCadastroEndereco extends javax.swing.JInternalFrame 
+{
     private String identificacao;
     
-    public FormCadastroEndereco() {
+    public FormCadastroEndereco() 
+    {
         initComponents();
         configurarForm();
     }
@@ -27,18 +29,13 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         //Caso existir a empresa, mostrar
         if(end != null)
         {
-            //Nome, CPF/CNPJ, Endereco e Cidade
            txtEndNome.setText(end.getNome());
            txtEndCpfCnpj.setText(end.getIdentificacao());
            txtEndEnd.setText(end.getEndereco());
            txtEndCidade.setText(end.getEndereco());
-           //UF
            DefaultComboBoxModel m = (DefaultComboBoxModel)cbxEndUF.getModel();
-           
-           //CEP
            txtEndCEP.setText(end.getCep());
-        }
-        
+        }    
     }
 
     @SuppressWarnings("unchecked")
@@ -206,6 +203,7 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //BOTÃO SALVAR
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
         Endereco obj = new Endereco();
@@ -220,33 +218,22 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         EnderecoDAO end = new EnderecoDAO();
         int resultado;
         
-        //Caso o tipo=0, cadastrar
-        if(obj.getIdentificacao().isEmpty())
-        {
-            //CADASTRAR ENDEREÇO
-            resultado = end.inserir(obj);
-        }
-        
-        //Caso esteja tipo=1
-        else
-        {
-            resultado = end.atualizarDados(obj);   
-        }
-        
-            
+        //CADASTRAR ENDEREÇO
+        resultado = end.inserir(obj);
         
         //Caso tenha sucesso na execução
          if (resultado >= 1)
          {
             JOptionPane.showMessageDialog(
                 null,
-                "Operação realizada com sucesso!", 
+                "Endereço cadastrado com sucesso!", 
                 "ENDEREÇOS",
                 JOptionPane.INFORMATION_MESSAGE
             );
         }
         //Caso ocorra um erro
-        else{
+        else
+         {
             JOptionPane.showMessageDialog(
                 null,
                 "Ocorreu um erro.",
@@ -258,6 +245,7 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    //BOTÃO CANCELAR
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -282,14 +270,16 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtEndNome;
     // End of variables declaration//GEN-END:variables
     
-    private void configurarForm(){
+    private void configurarForm()
+    {
         this.setTitle("Cadastro de Endereço");
         configurarUF();
         setResizable(false);
         setClosable(true);
     }
     
-    private void configurarUF(){ 
+    private void configurarUF()
+    { 
         //carregar as opções de status
         List<String> estado = new ArrayList<>(); //criando as opçÕes de de status
         estado.add("AC");
@@ -322,10 +312,11 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         
         //inserindo as opções na cbxStatus
         DefaultComboBoxModel m2 = new DefaultComboBoxModel();
-        for(String ef : estado){
+        
+        for(String ef : estado)
+        {
             m2.addElement(ef);
         }
         cbxEndUF.setModel(m2);
     }
-
 }

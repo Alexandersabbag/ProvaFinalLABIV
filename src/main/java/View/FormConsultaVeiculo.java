@@ -7,9 +7,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class FormConsultaVeiculo extends javax.swing.JInternalFrame {
+public class FormConsultaVeiculo extends javax.swing.JInternalFrame 
+{
 
-    public FormConsultaVeiculo() {
+    public FormConsultaVeiculo() 
+    {
         initComponents();
         configurarForm();
     }
@@ -101,6 +103,7 @@ public class FormConsultaVeiculo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //PESQUISA POR PLACA
     private void txtPlacaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyReleased
         // TODO add your handling code here:
         

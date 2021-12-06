@@ -8,9 +8,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class FormConsultaEntrega extends javax.swing.JInternalFrame {
+public class FormConsultaEntrega extends javax.swing.JInternalFrame 
+{
 
-    public FormConsultaEntrega() {
+    public FormConsultaEntrega() 
+    {
         initComponents();
         configurarForm();
     }
@@ -128,32 +130,27 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtNfKeyReleased
 
+    //OPÇÃO DE PESQUISAR POR NF
     private void tabListaEntregasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabListaEntregasKeyReleased
         // TODO add your handling code here:
+        
+        //Nome utilizado na pesquisa, procurar na base
+        String nota = txtNf.getText();
+        
+        //Caso o nome esteja vazio, mostrar toda a tabela
+        if(nota.isEmpty())
+        {
+            preencherTabela( new EntregaDAO().listar());
+        }
+        
+        //Caso tenha algo escrito, pesquisar
+        else
+        {
+            preencherTabela( new EntregaDAO().pesquisarPorNota(nota));
+        }
     }//GEN-LAST:event_tabListaEntregasKeyReleased
 
     private void tabListaEntregasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabListaEntregasMouseClicked
-        // TODO add your handling code here:
-        
-        //Caso o usuário clicou 2x
-        if(evt.getClickCount() == 2)
-        {
-            //Buscar o id da empresa para mostrar no formulário
-            int linha = tabListaEntregas.getSelectedRow();
-            String nf = tabListaEntregas.getValueAt(linha, 0).toString();
-            
-            //Abrir o formulário de cadastro no centro da tela
-            FormCadastroEntrega emp = new FormCadastroEntrega(nf);
-            
-            //Dimensionando no centro
-            Dimension d = this.getDesktopPane().getSize();
-            this.getDesktopPane().add(emp);
-            emp.setLocation((d.width-emp.getSize().width)/2, (d.height-emp.getSize().height)/2);
-            emp.setVisible(true);
-            
-            //Fechando o formulário
-            this.dispose();
-        }
     }//GEN-LAST:event_tabListaEntregasMouseClicked
 
 
@@ -166,7 +163,8 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNf;
     // End of variables declaration//GEN-END:variables
     
-    private void configurarForm(){
+    private void configurarForm()
+    {
         this.setTitle("Consulta de Entregas");
         this.setResizable(false);
         setClosable(true);
@@ -174,10 +172,13 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
         preencherTabela( new EntregaDAO().listar());
     }
     
-    private void configurarTabela(){
-        DefaultTableModel m = new DefaultTableModel(){
+    private void configurarTabela()
+    {
+        DefaultTableModel m = new DefaultTableModel()
+        {
             @Override
-            public boolean isCellEditable(int row, int column){
+            public boolean isCellEditable(int row, int column)
+            {
                 return false;
             }
         };

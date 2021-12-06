@@ -1,5 +1,6 @@
 package Controller;
 
+//Bibliotecas
 import Model.Entrega;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,17 +14,17 @@ public class EntregaDAO
     private Connection con;
     private PreparedStatement cmd;
     
-    public EntregaDAO() {
+    public EntregaDAO() 
+    {
         this.con = Conexao.conectar();
     }
     
-    //
-    //INSERIR
-    //
+    //INSERIR ENTREGA
     public int inserir(Entrega obj)
     {
         try
         {
+            //Enviar comando para o banco de dados
             String SQL = "Insert into tb_entrega "
                     + "(nf, placa, id_remetente, id_destinatario, status_entrega, dta_saida, dta_entrega) "
                     + "values (?,?,?,?,?,?,?)";
@@ -40,75 +41,29 @@ public class EntregaDAO
             
             if (cmd.executeUpdate() > 0)
             {
-                //operação realizada com sucesso
                 return 1;   //OK
             }
             else
             {
                 return -1;  // ERRO
-            }
-            
+            } 
         } 
+        
+        //Tratar os erros
         catch (SQLException e) 
         {
             System.err.println("ERRO: " + e.getMessage());
             return -2;
         }
-        finally{
-            Conexao.desconectar(con);
-        }
-    }
-    
-    //
-    //ATUALIZAR OS DADOS
-    public int atualizarDados(Entrega obj)
-    {
-        try
-        {
-            //Enviar comando para o banco de dados
-            String SQL = "update tb_entrega set nf=?, placa=?, id_remetente=?,"
-                    + " id_destinatario=?, status_entrega=?, dta_saida=?,"
-                    + " dta_entrega=? where nf=?";
-            
-            cmd = con.prepareStatement(SQL);
-            cmd.setString(1, obj.getNf());
-            cmd.setString(2, obj.getPlaca());
-            cmd.setString(3, obj.getId_remetente());
-            cmd.setString(4, obj.getId_destinatario());
-            cmd.setString(5, obj.getStatus_entrega());
-            cmd.setString(6, obj.getDta_saida());
-            cmd.setString(7, obj.getDta_entrega());
-            
-            //Caso o update seja concluido com sucesso
-            if(cmd.executeUpdate() > 0)
-            {
-                return 1;
-            }
-            
-            //Caso ocorra algum erro
-            else
-            {
-                return -1;
-            }
-        }
-        
-        //Tratar os erros
-        catch (SQLException e)
-        {
-               System.err.println("ERRO: " + e.getMessage());
-               return -2;
-        }
         
         //Desconectar
         finally
         {
-           Conexao.desconectar(con);
+            Conexao.desconectar(con);
         }
     }
     
-    //
     //PESQUISAR POR NF
-    //
     public Entrega pesquisarPorNf(String nf)
     {
         try
@@ -151,9 +106,7 @@ public class EntregaDAO
         }
     }
     
-    //
-    //LISTAR TODAS ENTREGAS
-    //
+    //LISTAR TODAS ENTREGAS CADASTRADAS
     public List<Entrega> listar()
     {
         try
@@ -178,7 +131,6 @@ public class EntregaDAO
                 ent.setDta_saida(rs.getString("dta_saida"));
                 ent.setDta_entrega(rs.getString("dta_entrega"));
                 lista.add(ent);
-                
             }
             return lista;
         }
@@ -197,7 +149,7 @@ public class EntregaDAO
         }
     }
     
-    //Função de pesquisar por nf após digitar na consulta
+    //PESQUISAR PELO NOTA FISCAL DIGITADA
     public List<Entrega> pesquisarPorNota(String nf)
     {
         try
@@ -224,8 +176,7 @@ public class EntregaDAO
                 ent.setStatus_entrega(rs.getString("status_entrega"));
                 ent.setDta_saida(rs.getString("dta_saida"));
                 ent.setDta_entrega(rs.getString("dta_entrega"));
-                lista.add(ent);
-                
+                lista.add(ent); 
             }
             return lista;
         }
@@ -242,6 +193,5 @@ public class EntregaDAO
         {
            Conexao.desconectar(con);
         }
-    }
-    
+    }  
 }

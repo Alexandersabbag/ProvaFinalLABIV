@@ -1,7 +1,7 @@
 package Model;
 
-public class Endereco {
-    
+public class Endereco 
+{
     private String nome;
     private String identificacao;
     private String endereco;
@@ -12,7 +12,8 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(String nome, String identificacao, String endereco, String cidade, String uf, String cep) {
+    public Endereco(String nome, String identificacao, String endereco, String cidade, String uf, String cep) 
+    {
         this.nome = nome;
         this.identificacao = identificacao;
         this.endereco = endereco;
@@ -20,7 +21,8 @@ public class Endereco {
         this.uf = uf;
         this.cep = cep;
     }
-
+    
+    //GETTERS E SETTERS
     public String getNome() {
         return nome;
     }

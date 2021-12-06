@@ -1,3 +1,4 @@
+--Criação da tabela usuário
 create table tb_usuario(
 	id SERIAL,
 	nome varchar(45), 
@@ -6,6 +7,7 @@ create table tb_usuario(
 	constraint pk_usuario_id primary key(id)
 );
 
+--Criação da tabela endereço
 create table tb_endereco(
 	nome varchar(225), --nome do cliente ou empresa
 	identificacao varchar(14), --cpf caso seja pessoa física ou cnpj para empresas
@@ -16,6 +18,7 @@ create table tb_endereco(
 	constraint pk_identificacao primary key(identificacao)
 );
 
+--Criação da tabela veículo
 create table tb_veiculo(
 	placa varchar(7),
 	cor varchar(20),
@@ -27,6 +30,7 @@ create table tb_veiculo(
 	constraint pk_placa primary key (placa)
 );
 
+--Criação da tabela entrega
 create table tb_entrega(
 	nf varchar(45),
 	placa varchar(7),
@@ -53,8 +57,7 @@ insert into tb_usuario (nome,senha,fg_ativo)
 	values
 	('admin','123456','1');
 	
--- encritografia de senha chamada MD5, não é o mais seguro de se usar(cria um hash de 32 caracteres) 
-
+-- encriptografia de senha chamada MD5, não é o mais seguro de se usar(cria um hash de 32 caracteres)
 update tb_usuario set senha=md5('123456')
 where id = 1
 

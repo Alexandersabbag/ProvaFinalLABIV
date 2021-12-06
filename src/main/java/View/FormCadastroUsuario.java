@@ -8,8 +8,8 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-public class FormCadastroUsuario extends javax.swing.JInternalFrame {
-    
+public class FormCadastroUsuario extends javax.swing.JInternalFrame 
+{
     private String id;
     
     public FormCadastroUsuario() 
@@ -160,6 +160,7 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //BOTÃO SALVAR
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         int opcao;
         
@@ -186,6 +187,7 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
             resultado = dao.inserir(obj);
             txtID.setText(Integer.toString(resultado));
         }
+        
         else
         {
             //atualizar
@@ -199,8 +201,9 @@ public class FormCadastroUsuario extends javax.swing.JInternalFrame {
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro","Cadastro de Funcionario", JOptionPane.ERROR_MESSAGE);    
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro","Cadastro de Usuário", JOptionPane.ERROR_MESSAGE);    
         }
+        
         this.dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
 

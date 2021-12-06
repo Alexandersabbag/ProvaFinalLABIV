@@ -1,5 +1,6 @@
 package View;
 
+//Bibliotecas
 import Controller.EntregaDAO;
 import Model.Entrega;
 import java.util.ArrayList;
@@ -7,9 +8,10 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-public class FormCadastroEntrega extends javax.swing.JInternalFrame {
-
-    public FormCadastroEntrega() {
+public class FormCadastroEntrega extends javax.swing.JInternalFrame 
+{
+    public FormCadastroEntrega() 
+    {
         initComponents();
         configurarForm();
     }
@@ -36,7 +38,6 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
            txtDtaSaida.setText(ent.getDta_saida());
            txtDtaEntrega.setText(ent.getDta_entrega());
         }
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -222,15 +223,16 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //BOTÃO CANCELAR
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
         
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    //BOTÃO SALVAR
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
-        
+
         //Novos dados da entrega
         Entrega obj = new Entrega();
   
@@ -245,42 +247,34 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
         //Executando
         EntregaDAO ent = new EntregaDAO();
         int resultado;
-        
-        if(obj.getNf().isEmpty())
-        {
-            //Cadastro
-            resultado = ent.inserir(obj);
-        }
-        else
-        {
-            //Atualizar
-            resultado = ent.atualizarDados(obj);
-        }
-        
-        
+
+        //Cadastro
+        resultado = ent.inserir(obj);
         
         //Caso tenha sucesso na execução
          if (resultado >= 1)
          {
             JOptionPane.showMessageDialog(
                 null,
-                "Operação realizada com sucesso!", 
+                "Entrega cadastrada com sucesso!", 
                 "ENTREGAS",
                 JOptionPane.INFORMATION_MESSAGE
             );
         }
+         
         //Caso ocorra um erro
-        else{
+        else
+         {
             JOptionPane.showMessageDialog(
                 null,
-                "Ocorreu um erro.",
+                "Ocorreu um erro. Verifique se o veículo e/ou CPF/CPNJ de "
+                        + "entrega e/ou coleta estão cadastrados",
                 "ENTREGAS",
                 JOptionPane.ERROR_MESSAGE
             );
         }
         
         this.dispose(); 
-        
     }//GEN-LAST:event_btnSalvarActionPerformed
                            
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -304,20 +298,23 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtRemetente;
     // End of variables declaration//GEN-END:variables
 
-    private void configurarForm(){
+    private void configurarForm()
+    {
         this.setTitle("Cadastro de Entregas");
         configurarStatus();
         setResizable(false);
         setClosable(true);
     }
 
-    private void configurarStatus(){
+    private void configurarStatus()
+    {
         List<String> status = new ArrayList<>();
         status.add("Encaminhando");
         status.add("Transportando");
         status.add("Entregue");
         DefaultComboBoxModel m2 = new DefaultComboBoxModel();
-        for(String stat : status){
+        for(String stat : status)
+        {
             m2.addElement(stat);
         }
         cbxStatus.setModel(m2);

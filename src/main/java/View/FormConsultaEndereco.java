@@ -8,9 +8,11 @@ import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class FormConsultaEndereco extends javax.swing.JInternalFrame {
+public class FormConsultaEndereco extends javax.swing.JInternalFrame 
+{
 
-    public FormConsultaEndereco() {
+    public FormConsultaEndereco() 
+    {
         initComponents();
         configurarForm();
     }
@@ -103,29 +105,9 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabEnderecoMouseClicked
-        // TODO add your handling code here:
-        
-        //Caso o usuário clicou 2x
-        if(evt.getClickCount() == 2)
-        {
-            //Buscar o id da empresa para mostrar no formulário
-            int linha = tabEndereco.getSelectedRow();
-            String id = tabEndereco.getValueAt(linha, 0).toString();
-            
-            //Abrir o formulário de cadastro no centro da tela
-            FormCadastroEndereco end = new FormCadastroEndereco(id);
-            
-            //Dimensionando no centro
-            Dimension d = this.getDesktopPane().getSize();
-            this.getDesktopPane().add(end);
-            end.setLocation((d.width-end.getSize().width)/2, (d.height-end.getSize().height)/2);
-            end.setVisible(true);
-            
-            //Fechando o formulário
-            this.dispose();
-        }
     }//GEN-LAST:event_tabEnderecoMouseClicked
 
+    //OPÇÃO DE PESQUISAR POR CPF/CNPJ
     private void txtCpfCnpjKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCpfCnpjKeyReleased
         // TODO add your handling code here:
         
@@ -164,13 +146,17 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
         preencherTabela( new EnderecoDAO().listar());
     }
     
-    private void configurarTabela(){
-        DefaultTableModel m = new DefaultTableModel(){
+    private void configurarTabela()
+    {
+        DefaultTableModel m = new DefaultTableModel()
+        {
             @Override
-            public boolean isCellEditable(int row, int column){
+            public boolean isCellEditable(int row, int column)
+            {
                 return false;
             }
         };
+        
         m.addColumn("CPF/CNPJ");
         m.addColumn("Nome do Cliente/Empresa");
         m.addColumn("Endereço"); 
@@ -206,7 +192,6 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
                     }
                                );
                 }
-                
                 tabEndereco.setModel(emp);
             }
             

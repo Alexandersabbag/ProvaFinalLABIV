@@ -1,6 +1,7 @@
 package Model;
 
-public class Usuario {
+public class Usuario 
+{
     private int id;
     private String senha;
     private String nome;
@@ -10,13 +11,15 @@ public class Usuario {
         
     }
 
-    public Usuario(int id, String nome, String senha, int fg_ativo) {
+    public Usuario(int id, String nome, String senha, int fg_ativo) 
+    {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.fg_ativo = fg_ativo;
     }
 
+    //GETTERS E SETTERS
     public int getFg_ativo() {
         return fg_ativo;
     }

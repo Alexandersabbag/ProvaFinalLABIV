@@ -6,12 +6,14 @@ import java.awt.Dimension;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
-public class FormPrincipal extends javax.swing.JFrame {
+public class FormPrincipal extends javax.swing.JFrame 
+{
 
     public static boolean login = false;
     public static boolean admin = false;
     
-    public FormPrincipal() {
+    public FormPrincipal() 
+    {
         initComponents();
         configurarForm();
         abrirForm(new FormLogin());
@@ -167,8 +169,10 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void menuConsultaUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaUsuariosActionPerformed
         //Consultar Usuarios
-        if(verificarLogin() == true){
-            if(admin == false){
+        if(verificarLogin() == true)
+        {
+            if(admin == false)
+            {
                 JOptionPane.showMessageDialog(null, 
                     "ERRO: Acesso negado", 
                     "Erro", 

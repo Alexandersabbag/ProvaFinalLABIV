@@ -1,5 +1,6 @@
 package Controller;
 
+//Bibliotecas
 import Model.Endereco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,15 +14,17 @@ public class EnderecoDAO
     private Connection con;
     private PreparedStatement cmd;
 
-    public EnderecoDAO() {
+    public EnderecoDAO() 
+    {
         this.con = Conexao.conectar();
     }
     
-    //INSERIR
+    //INSERIR ENDEREÇO
     public int inserir(Endereco obj)
     {
         try
         {
+            //Enviar comando para o banco de dados
             String SQL = "Insert into tb_endereco "
                     + "(nome,identificacao, endereco, cidade, uf, cep) values (?,?,?,?,?,?)";
             
@@ -33,66 +36,32 @@ public class EnderecoDAO
             cmd.setString(5, obj.getUf());
             cmd.setString(6, obj.getCep());
             
-            if (cmd.executeUpdate() > 0){
-                //operação realizada com sucesso
+            if (cmd.executeUpdate() > 0)
+            {
                 return 1;   //OK
-            }else{
+            }
+            else
+            {
                 return -1;  // ERRO
             }
             
-        } catch (SQLException e) {
-            System.err.println("ERRO: " + e.getMessage());
-            return -2;
-        }finally{
-            Conexao.desconectar(con);
-        }
-    }
-    
-    //Função de atualizar os dados
-    public int atualizarDados(Endereco obj)
-    {
-        try
-        {
-            //Enviar comando para o banco de dados
-            String SQL = "update tb_endereco set nome=?, identificacao=?, endereco=?,"
-                    + " cidade=?, uf=?, cep=? where identificacao=?";
-            
-            cmd = con.prepareStatement(SQL);
-            cmd.setString(1, obj.getNome());
-            cmd.setString(2, obj.getIdentificacao());
-            cmd.setString(3, obj.getEndereco());
-            cmd.setString(4, obj.getCidade());
-            cmd.setString(5, obj.getUf());
-            cmd.setString(6, obj.getCep());
-            
-            //Caso o update seja concluido com sucesso
-            if(cmd.executeUpdate() > 0)
-            {
-                return 1;
-            }
-            
-            //Caso ocorra algum erro
-            else
-            {
-                return -1;
-            }
-        }
+        } 
         
         //Tratar os erros
-        catch (SQLException e)
+        catch (SQLException e) 
         {
-               System.err.println("ERRO: " + e.getMessage());
-               return -1;
+            System.err.println("ERRO: " + e.getMessage());
+            return -2;
         }
         
         //Desconectar
         finally
         {
-           Conexao.desconectar(con);
+            Conexao.desconectar(con);
         }
     }
     
-    //PESQUISA POR CPF/CNPJ
+    //PESQUISA POR CPF/CNPJ = Identificação
     public Endereco pesquisarPorId(String identificacao)
     {
         try
@@ -126,7 +95,7 @@ public class EnderecoDAO
                System.err.println("ERRO: " + e.getMessage());
                return null;
         }
-        
+     
         //Desconectar
         finally
         {
@@ -134,9 +103,7 @@ public class EnderecoDAO
         }
     }
     
-    //
-    //LISTAR TODOS CADASTROS
-    //
+    //LISTAR TODOS ENDEREÇOS CADASTRADOS
     public List<Endereco> listar()
     {
         try
@@ -179,10 +146,7 @@ public class EnderecoDAO
         }
     }
     
-    //
-    //PESQUISAR PELO CPF DIGITADO
-    //
-    //Função de pesquisar por nome
+    //PESQUISAR PELO CPF/CNPJ DIGITADO
     public List<Endereco> pesquisarPorCpfCnpj(String identificacao)
     {
         try
@@ -225,7 +189,5 @@ public class EnderecoDAO
         {
            Conexao.desconectar(con);
         }
-    }
-    
-        
+    }      
 }

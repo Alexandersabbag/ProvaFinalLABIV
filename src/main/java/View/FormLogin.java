@@ -101,6 +101,7 @@ public class FormLogin extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
+        
         Usuario u = new Usuario();
         u.setNome(txtNome.getText());
         u.setSenha(new String (txtSenha.getPassword()));
@@ -108,16 +109,23 @@ public class FormLogin extends javax.swing.JInternalFrame {
         if(new UsuarioDAO().retornarID(u) == 1)
             FormPrincipal.admin = true;
         
-        if(u.getNome().trim().isEmpty() || u.getSenha().trim().isEmpty()){ //verificar se tem espaço em branco no login e senha
+        if(u.getNome().trim().isEmpty() || u.getSenha().trim().isEmpty())
+        { 
+            //verificar se tem espaço em branco no login e senha
             JOptionPane.showMessageDialog(null,"Usuario e/ou senha não pode ser vazio","Login",JOptionPane.ERROR_MESSAGE);
         }
-        else{           
-            if(new UsuarioDAO().login(u) == true){
+        
+        else
+        {           
+            if(new UsuarioDAO().login(u) == true)
+            {
                 //usuario logado com sucesso!
                 FormPrincipal.login = true;
                 this.dispose(); //fecha a tela de Login
             }
-            else{
+            
+            else
+            {
                 JOptionPane.showMessageDialog(null,"Usuário ou senha inválido","Login",JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -139,7 +147,8 @@ public class FormLogin extends javax.swing.JInternalFrame {
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
     
-    private void configurarForm(){
+    private void configurarForm()
+    {
         this.setTitle("Login");
         this.setResizable(false);
         this.setClosable(false);

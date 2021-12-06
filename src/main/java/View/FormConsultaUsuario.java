@@ -1,5 +1,6 @@
 package View;
 
+//Bibliotecas
 import Controller.UsuarioDAO;
 import java.awt.Dimension;
 import java.util.List;
@@ -9,7 +10,8 @@ import javax.swing.JOptionPane;
 
 public class FormConsultaUsuario extends javax.swing.JInternalFrame {
 
-    public FormConsultaUsuario() {
+    public FormConsultaUsuario() 
+    {
         initComponents();
         configurarForm();
     }
@@ -70,6 +72,7 @@ public class FormConsultaUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //EDITAR DADOS
     private void tabAtualizarFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAtualizarFuncionarioMouseClicked
         if(evt.getClickCount() == 2)
         {
@@ -106,7 +109,8 @@ public class FormConsultaUsuario extends javax.swing.JInternalFrame {
         preencherTabela( new UsuarioDAO().listar());
     }
     
-    private void configurarTabela(){
+    private void configurarTabela()
+    {
         DefaultTableModel m = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){

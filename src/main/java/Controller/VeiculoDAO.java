@@ -1,5 +1,6 @@
 package Controller;
 
+//Bibliotecas
 import Model.Veiculo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,19 +11,20 @@ import java.util.List;
 
 public class VeiculoDAO 
 {
-    
     private Connection con;
     private PreparedStatement cmd;
     
-    public VeiculoDAO(){
+    public VeiculoDAO()
+    {
         this.con = Conexao.conectar();
     }
     
-    //
-    //INSERIR
-    //
-    public int inserir(Veiculo obj){
-        try { 
+    //INSERIR PLACA
+    public int inserir(Veiculo obj)
+    {
+        try 
+        { 
+            //Enviar comando para o banco de dados
             String SQL = "insert into tb_veiculo"
                         + "(placa, cor, modelo, marca, motorista, fg_ativo) values (?,?,?,?,?,?)"; 
             
@@ -34,71 +36,32 @@ public class VeiculoDAO
             cmd.setString(5, obj.getMotorista());
             cmd.setInt(6, obj.getFg_ativo());
             
-             
-            //envia a instrução SQL para o banco
-            if (cmd.executeUpdate() > 0){
+            if (cmd.executeUpdate() > 0)
+            {
                 return 1;   //OK
-            }else{
+            }
+            else
+            {
                 return -1;  //ERRO
             }
             
-        } catch (SQLException e) { 
-            System.err.println("ERRO: " + e.getMessage());
-            return -2; //algo errado
-        }finally{
-            Conexao.desconectar(con);
-        }
-    }
-    
-    //
-    //ATUALIZAR OS DADOS
-    //
-    public int atualizarDados(Veiculo obj)
-    {
-        try
-        {
-            //Enviar comando para o banco de dados
-            String SQL = "update tb_veiculo set cor=?, modelo=?,"
-                    + " marca=?, motorista=?, fg_ativo=? where placa=?";
-            
-            cmd = con.prepareStatement(SQL);
-            cmd.setString(1, obj.getPlaca());
-            cmd.setString(2, obj.getCor());
-            cmd.setString(3, obj.getModelo());
-            cmd.setString(4, obj.getMarca());
-            cmd.setString(5, obj.getMotorista());
-            cmd.setInt(6, obj.getFg_ativo());
-            
-            //Caso o update seja concluido com sucesso
-            if(cmd.executeUpdate() > 0)
-            {
-                return 1;
-            }
-            
-            //Caso ocorra algum erro
-            else
-            {
-                return -1;
-            }
-        }
+        } 
         
         //Tratar os erros
-        catch (SQLException e)
-        {
-               System.err.println("ERRO: " + e.getMessage());
-               return -2;
+        catch (SQLException e) 
+        { 
+            System.err.println("ERRO: " + e.getMessage());
+            return -2; //algo errado
         }
         
         //Desconectar
         finally
         {
-           Conexao.desconectar(con);
+            Conexao.desconectar(con);
         }
     }
     
-    //
     //PESQUISAR POR PLACA
-    //
     public Veiculo pesquisarPorPlaca(String placa)
     {
         try
@@ -140,9 +103,7 @@ public class VeiculoDAO
         }
     }
     
-    //
-    //LISTAR TODAS ENTREGAS
-    //
+    //LISTAR TODAS PLACAS CADASTRADAS
     public List<Veiculo> listar()
     {
         try
@@ -185,9 +146,7 @@ public class VeiculoDAO
         }
     }
     
-    //
-    //PESQUISAR APÓS DIGITAR NA CONSULTA
-    //
+    //PESQUISAR PELO PLACA DIGITADA
     public List<Veiculo> pesquisarPorPlacaConsulta(String placa)
     {
         try
@@ -231,7 +190,5 @@ public class VeiculoDAO
         {
            Conexao.desconectar(con);
         }
-    }
-    
-    
+    }  
 }
