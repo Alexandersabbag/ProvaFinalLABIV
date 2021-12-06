@@ -131,7 +131,7 @@ public class FormConsultaVeiculo extends javax.swing.JInternalFrame {
             String id = tabListaVeiculos.getValueAt(linha, 0).toString();
             
             //Abrir o formulário de cadastro no centro da tela
-            FormCadastroVeiculo veic = new FormCadastroVeiculo(id, 1);
+            FormCadastroVeiculo veic = new FormCadastroVeiculo(id);
             
             //Dimensionando no centro
             Dimension d = this.getDesktopPane().getSize();

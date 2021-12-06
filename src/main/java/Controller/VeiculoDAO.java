@@ -25,6 +25,7 @@ public class VeiculoDAO
         try { 
             String SQL = "insert into tb_veiculo"
                         + "(placa, cor, modelo, marca, motorista, fg_ativo) values (?,?,?,?,?,?)"; 
+            
             cmd = con.prepareStatement(SQL);
             cmd.setString(1, obj.getPlaca());
             cmd.setString(2, obj.getCor());
@@ -57,9 +58,10 @@ public class VeiculoDAO
         try
         {
             //Enviar comando para o banco de dados
-            String SQL = "update tb_veiculo set placa=?, cor=?, modelo=?,"
+            String SQL = "update tb_veiculo set cor=?, modelo=?,"
                     + " marca=?, motorista=?, fg_ativo=? where placa=?";
             
+            cmd = con.prepareStatement(SQL);
             cmd.setString(1, obj.getPlaca());
             cmd.setString(2, obj.getCor());
             cmd.setString(3, obj.getModelo());

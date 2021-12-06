@@ -13,13 +13,11 @@ public class FormCadastroVeiculo extends javax.swing.JInternalFrame {
     }
     
     private String placa;
-    private int tipo=0;
     
-    public FormCadastroVeiculo(String placa, int tipo)
+    public FormCadastroVeiculo(String placa)
     {
         this();
         this.placa = placa;
-        this.tipo = tipo;
         
         //Exibir os dados da entrega selecionada(com 2 cliques)
         Veiculo veic = new VeiculoDAO().pesquisarPorPlaca(placa);
@@ -196,17 +194,18 @@ public class FormCadastroVeiculo extends javax.swing.JInternalFrame {
         int resultado;
         
         //Caso tipo=0, cadastrar
-        if(tipo==0)
+        if(obj.getPlaca().isEmpty())
         {
             //Cadastro
-            resultado = veic.inserir(obj);
+            resultado = veic.inserir(obj);         
+            txtPlaca.setText(Integer.toString(resultado));
         }
         
         //Caso não, atualizar
         else
         {
+            obj.setPlaca(txtPlaca.getText());
             resultado = veic.atualizarDados(obj);
-            tipo=0;
         }
         
         

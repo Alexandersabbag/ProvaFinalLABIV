@@ -143,7 +143,7 @@ public class FormConsultaEntrega extends javax.swing.JInternalFrame {
             String nf = tabListaEntregas.getValueAt(linha, 0).toString();
             
             //Abrir o formulário de cadastro no centro da tela
-            FormCadastroEntrega emp = new FormCadastroEntrega(nf, 1);
+            FormCadastroEntrega emp = new FormCadastroEntrega(nf);
             
             //Dimensionando no centro
             Dimension d = this.getDesktopPane().getSize();

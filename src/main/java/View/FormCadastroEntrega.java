@@ -15,13 +15,11 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
     }
 
     private String nf;
-    private int tipo=0;
     
-    public FormCadastroEntrega(String nf, int tipo)
+    public FormCadastroEntrega(String nf)
     {
         this();
         this.nf = nf;
-        this.tipo = tipo;
         
         //Exibir os dados da entrega selecionada(com 2 cliques)
         Entrega ent = new EntregaDAO().pesquisarPorNf(nf);
@@ -245,19 +243,18 @@ public class FormCadastroEntrega extends javax.swing.JInternalFrame {
         obj.setDta_entrega(txtDtaEntrega.getText());
         
         //Executando
-        EntregaDAO end = new EntregaDAO();
+        EntregaDAO ent = new EntregaDAO();
         int resultado;
         
-        if(tipo==0)
+        if(obj.getNf().isEmpty())
         {
             //Cadastro
-            resultado = end.inserir(obj);
+            resultado = ent.inserir(obj);
         }
         else
         {
             //Atualizar
-            resultado = end.atualizarDados(obj);
-            tipo=0;
+            resultado = ent.atualizarDados(obj);
         }
         
         

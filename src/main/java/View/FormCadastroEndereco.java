@@ -10,18 +10,16 @@ import javax.swing.JOptionPane;
 public class FormCadastroEndereco extends javax.swing.JInternalFrame {
 
     private String identificacao;
-    private int tipo = 0;
     
     public FormCadastroEndereco() {
         initComponents();
         configurarForm();
     }
     
-    public FormCadastroEndereco(String identificacao, int tipo)
+    public FormCadastroEndereco(String identificacao)
     {
         this();
         this.identificacao = identificacao;
-        this.tipo = tipo;
         
         //Exibir os dados da empresa selecionada(com 2 cliques)
         Endereco end = new EnderecoDAO().pesquisarPorId(identificacao);
@@ -223,7 +221,7 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         int resultado;
         
         //Caso o tipo=0, cadastrar
-        if(tipo==0)
+        if(obj.getIdentificacao().isEmpty())
         {
             //CADASTRAR ENDEREÇO
             resultado = end.inserir(obj);
@@ -233,7 +231,6 @@ public class FormCadastroEndereco extends javax.swing.JInternalFrame {
         else
         {
             resultado = end.atualizarDados(obj);   
-            tipo=0;
         }
         
             

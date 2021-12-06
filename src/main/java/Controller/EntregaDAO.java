@@ -69,6 +69,8 @@ public class EntregaDAO
             String SQL = "update tb_entrega set nf=?, placa=?, id_remetente=?,"
                     + " id_destinatario=?, status_entrega=?, dta_saida=?,"
                     + " dta_entrega=? where nf=?";
+            
+            cmd = con.prepareStatement(SQL);
             cmd.setString(1, obj.getNf());
             cmd.setString(2, obj.getPlaca());
             cmd.setString(3, obj.getId_remetente());

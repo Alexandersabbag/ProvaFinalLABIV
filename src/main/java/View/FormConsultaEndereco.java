@@ -113,7 +113,7 @@ public class FormConsultaEndereco extends javax.swing.JInternalFrame {
             String id = tabEndereco.getValueAt(linha, 0).toString();
             
             //Abrir o formulário de cadastro no centro da tela
-            FormCadastroEndereco end = new FormCadastroEndereco(id, 1);
+            FormCadastroEndereco end = new FormCadastroEndereco(id);
             
             //Dimensionando no centro
             Dimension d = this.getDesktopPane().getSize();
