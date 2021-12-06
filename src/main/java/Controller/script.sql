@@ -59,5 +59,5 @@ insert into tb_usuario (nome,senha,fg_ativo)
 	
 -- encriptografia de senha chamada MD5, não é o mais seguro de se usar(cria um hash de 32 caracteres)
 update tb_usuario set senha=md5('123456')
-where id = 1
+where id = 1;
 
